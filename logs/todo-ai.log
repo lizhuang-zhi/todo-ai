@@ -1,3 +1,25 @@
 {"level":"INFO","time":"2024-12-21T21:28:19.059+0800","name":"todo-ai","msg":"HttpServer start with addr: 0.0.0.0:18888","caller":"core/server.go:31"}
 {"level":"INFO","time":"2024-12-21T21:28:19.062+0800","name":"todo-ai","msg":"todo-ai start, srvID: todo-ai-ctjc4sjtbcm1pqksvr6g","caller":"todo-ai/main.go:125"}
 {"level":"INFO","time":"2024-12-21T21:29:32.907+0800","name":"todo-ai","msg":"[todo-ai] 200 POST    /task/create","ip":"::1","cost":1}
+{"level":"INFO","time":"2024-12-21T21:53:15.533+0800","name":"todo-ai","msg":"Recv signal interrupt","caller":"todo-ai/main.go:177"}
+{"level":"INFO","time":"2024-12-21T21:53:29.459+0800","name":"todo-ai","msg":"HttpServer start with addr: 0.0.0.0:18888","caller":"core/server.go:31"}
+{"level":"INFO","time":"2024-12-21T21:53:29.460+0800","name":"todo-ai","msg":"todo-ai start, srvID: todo-ai-ctjcgmbtbcmfsgql7cqg","caller":"todo-ai/main.go:125"}
+{"level":"INFO","time":"2024-12-21T21:54:15.691+0800","name":"todo-ai","msg":"[todo-ai] 200 POST    /task/create","ip":"::1","cost":8}
+{"level":"INFO","time":"2024-12-21T21:54:25.360+0800","name":"todo-ai","msg":"[todo-ai] 200 POST    /task/update","ip":"::1","cost":2}
+{"level":"INFO","time":"2024-12-21T21:58:48.800+0800","name":"todo-ai","msg":"Recv signal interrupt","caller":"todo-ai/main.go:177"}
+{"level":"INFO","time":"2024-12-21T21:58:53.236+0800","name":"todo-ai","msg":"HttpServer start with addr: 0.0.0.0:18888","caller":"core/server.go:31"}
+{"level":"INFO","time":"2024-12-21T21:58:53.237+0800","name":"todo-ai","msg":"todo-ai start, srvID: todo-ai-ctjcj7btbcm2somag5r0","caller":"todo-ai/main.go:125"}
+{"level":"INFO","time":"2024-12-21T21:59:22.494+0800","name":"todo-ai","msg":"[todo-ai] 200 POST    /task/create","ip":"::1","cost":2}
+{"level":"INFO","time":"2024-12-21T21:59:31.990+0800","name":"todo-ai","msg":"[todo-ai] 200 POST    /task/update","ip":"::1","cost":2}
+{"level":"INFO","time":"2024-12-21T21:59:42.337+0800","name":"todo-ai","msg":"[todo-ai] 200 POST    /task/update","ip":"::1","cost":1}
+{"level":"INFO","time":"2024-12-21T22:00:11.307+0800","name":"todo-ai","msg":"Recv signal interrupt","caller":"todo-ai/main.go:177"}
+{"level":"INFO","time":"2024-12-21T22:00:14.917+0800","name":"todo-ai","msg":"HttpServer start with addr: 0.0.0.0:18888","caller":"core/server.go:31"}
+{"level":"INFO","time":"2024-12-21T22:00:14.918+0800","name":"todo-ai","msg":"todo-ai start, srvID: todo-ai-ctjcjrjtbcm3l5d4g0d0","caller":"todo-ai/main.go:125"}
+{"level":"ERROR","time":"2024-12-21T22:00:21.726+0800","name":"todo-ai","msg":"model.GetTaskByID error:mongo: no documents in result","caller":"api/task.go:123"}
+{"level":"ERROR","time":"2024-12-21T22:00:21.726+0800","name":"todo-ai","msg":"handle /task/update error:mongo: no documents in result","caller":"router/router.go:46"}
+{"level":"INFO","time":"2024-12-21T22:00:21.726+0800","name":"todo-ai","msg":"[todo-ai] 500 POST    /task/update","ip":"::1","cost":1}
+{"level":"INFO","time":"2024-12-21T22:00:24.974+0800","name":"todo-ai","msg":"[todo-ai] 200 POST    /task/create","ip":"::1","cost":1}
+{"level":"ERROR","time":"2024-12-21T22:00:29.668+0800","name":"todo-ai","msg":"model.GetTaskByID error:mongo: no documents in result","caller":"api/task.go:123"}
+{"level":"ERROR","time":"2024-12-21T22:00:29.669+0800","name":"todo-ai","msg":"handle /task/update error:mongo: no documents in result","caller":"router/router.go:46"}
+{"level":"INFO","time":"2024-12-21T22:00:29.669+0800","name":"todo-ai","msg":"[todo-ai] 500 POST    /task/update","ip":"::1","cost":1}
+{"level":"INFO","time":"2024-12-21T22:00:38.919+0800","name":"todo-ai","msg":"[todo-ai] 200 POST    /task/update","ip":"::1","cost":23}

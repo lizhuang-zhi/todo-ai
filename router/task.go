@@ -10,5 +10,6 @@ func InitTaskRouter(Router *gin.RouterGroup) {
 	router := Router.Group("task").Use(api.AuthCheck())
 	{
 		router.POST("create", WrapperHandler(api.CreateTask)) // 创建任务
+		router.POST("update", WrapperHandler(api.UpdateTask)) // 修改任务
 	}
 }
