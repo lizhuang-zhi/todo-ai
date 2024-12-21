@@ -1,0 +1,38 @@
+# AI助理配置文件
+system:
+  server_type: 0 #0表示国际服 1国服
+  server: "local"
+  tcp_port: 18888
+  auth_open: false
+  auth_access_key: 'mrkleo112233'
+  openapi_token: "112233mrkleo"
+  tmp_dir: "./tmp" # 临时数据存放目录
+  cloud: "" # 运行的云厂商tencent/aliyun
+  shadow: false
+
+# MONGODB
+mongodb:
+  instance: 'mongodb://127.0.0.1:27017/todo-ai'
+
+# Redis
+redis:
+  instance: 'redis://127.0.0.1:6379/0'
+  isCluster: false
+  prefix: "" # 数据key前缀
+
+# 日志配置
+logging:
+  level: "info" # 日志等级
+  color: true # 是否打印日志颜色
+  path: "./logs" # 是否输出日志到文件，配置空则不输出
+  encoding: "console" # 日志模式，console或json
+  max_size: 30 # 在进行切割之前，日志文件的最大大小（以MB为单位）
+  max_backups: 10 # 保留旧文件的最大个数
+  max_age: 7 # 保留旧文件的最大天数
+  buffer: false # 缓写模式
+
+# Dify配置
+dify:
+  api_url: "http://localhost/v1"  # Dify API地址
+  workflow:
+
