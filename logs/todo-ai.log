@@ -24,3 +24,17 @@
 {"level":"INFO","time":"2024-12-21T22:00:29.669+0800","name":"todo-ai","msg":"[todo-ai] 500 POST    /task/update","ip":"::1","cost":1}
 {"level":"INFO","time":"2024-12-21T22:00:38.919+0800","name":"todo-ai","msg":"[todo-ai] 200 POST    /task/update","ip":"::1","cost":23}
 {"level":"INFO","time":"2024-12-22T14:44:59.396+0800","name":"todo-ai","msg":"Recv signal interrupt","caller":"todo-ai/main.go:177"}
+{"level":"INFO","time":"2024-12-22T14:46:52.516+0800","name":"todo-ai","msg":"HttpServer start with addr: 0.0.0.0:18888","caller":"core/server.go:31"}
+{"level":"INFO","time":"2024-12-22T14:46:52.517+0800","name":"todo-ai","msg":"todo-ai start, srvID: todo-ai-ctjrbn3tbcm3mcj70stg","caller":"todo-ai/main.go:125"}
+{"level":"INFO","time":"2024-12-22T14:49:08.070+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /task/list?user_id=1&type=0&date=2024-12-21&year=2024","ip":"::1","cost":5}
+{"level":"INFO","time":"2024-12-22T14:49:22.646+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /task/list?user_id=1&type=1&date=2024-12-21&year=2024","ip":"::1","cost":31}
+{"level":"INFO","time":"2024-12-22T14:49:27.564+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /task/list?user_id=1&type=0&date=2024-12-21&year=2024","ip":"::1","cost":16}
+{"level":"INFO","time":"2024-12-22T14:50:21.498+0800","name":"todo-ai","msg":"[todo-ai] 200 POST    /task/delete","ip":"::1","cost":6}
+{"level":"INFO","time":"2024-12-22T14:50:46.760+0800","name":"todo-ai","msg":"[todo-ai] 200 POST    /task/create","ip":"::1","cost":32}
+{"level":"INFO","time":"2024-12-22T14:51:04.729+0800","name":"todo-ai","msg":"[todo-ai] 200 POST    /task/create","ip":"::1","cost":3}
+{"level":"INFO","time":"2024-12-22T14:51:19.131+0800","name":"todo-ai","msg":"[todo-ai] 200 POST    /task/delete","ip":"::1","cost":2}
+{"level":"INFO","time":"2024-12-22T14:54:09.984+0800","name":"todo-ai","msg":"[todo-ai] 200 POST    /task/create","ip":"::1","cost":7}
+{"level":"INFO","time":"2024-12-22T14:54:36.384+0800","name":"todo-ai","msg":"[todo-ai] 200 POST    /task/create","ip":"::1","cost":41}
+{"level":"INFO","time":"2024-12-22T14:55:24.665+0800","name":"todo-ai","msg":"[todo-ai] 200 POST    /task/finished","ip":"::1","cost":15}
+{"level":"INFO","time":"2024-12-22T14:55:45.214+0800","name":"todo-ai","msg":"[todo-ai] 200 POST    /task/finished","ip":"::1","cost":2}
+{"level":"INFO","time":"2024-12-22T14:56:05.833+0800","name":"todo-ai","msg":"[todo-ai] 200 POST    /task/finished","ip":"::1","cost":11}
