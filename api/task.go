@@ -107,6 +107,8 @@ func UpdateTask(ctx *gin.Context) (interface{}, error) {
 		return nil, errors.New("name is empty")
 	}
 
+	// TODO: 改到某日期, 还要同步修改Date和Year字段
+
 	update := bson.M{"$set": bson.M{
 		"name":       request.Name,
 		"priority":   request.Priority,
