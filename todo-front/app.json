@@ -1,0 +1,51 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/achievement/achievement",
+    "pages/profile/profile",
+    "pages/todo/todo",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarBackgroundColor": "#ffffff"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/achievement/achievement",
+        "iconPath": "images/index.png",
+        "selectedIconPath": "images/index-select.png",
+        "text": "成就"
+      },
+      {
+        "pagePath": "pages/todo/todo",
+        "iconPath": "images/star.png",
+        "selectedIconPath": "images/star-select.png",
+        "text": "todo"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "iconPath": "images/star.png",
+        "selectedIconPath": "images/star-select.png",
+        "text": "个人"
+      }
+    ]
+  },
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "usingComponents": {
+    "van-calendar": "@vant/weapp/calendar/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-radio": "@vant/weapp/radio/index",
+    "van-radio-group": "@vant/weapp/radio-group/index",
+    "van-button": "@vant/weapp/button/index"
+  }
+}
