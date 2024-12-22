@@ -34,7 +34,8 @@ func Routers() *gin.Engine {
 	Router.Use(middleware.Cors())
 	APIGroup := Router.Group("")
 
-	InitTaskRouter(APIGroup) // 注册任务路由
+	InitTaskRouter(APIGroup)   // 注册任务路由
+	InitAiPlanRouter(APIGroup) // 注册AI当日规划路由(后续可能还有AI周规划等)
 
 	return Router
 }

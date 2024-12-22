@@ -13,6 +13,7 @@ type Task struct {
 	UserID       int64   `json:"user_id" bson:"user_id"`             // 用户ID
 	Name         string  `json:"name" bson:"name"`                   // 任务名称
 	Date         string  `json:"date" bson:"date"`                   // 日期(yyyy-MM-dd)
+	Year         int     `json:"year" bson:"year"`                   // 年份
 	Priority     int     `json:"priority" bson:"priority"`           // 优先级(0-无 1-低 2-中 3-高)
 	Type         int     `json:"type" bson:"type"`                   // 任务类型(0-单日任务 1-年度挑战)
 	ParentID     int64   `json:"parent_id" bson:"parent_id"`         // 父任务ID
@@ -44,4 +45,40 @@ func GetTaskByTaskID(taskID int64) (*Task, error) {
 		return nil, err
 	}
 	return &task, nil
+}
+
+// DeleteTaskByTaskID
+func DeleteTaskByTaskID(taskID int64) error {
+	_, err := common.Mgo.Delete(context.Background(), consts.CollectionTask, bson.M{"task_id": taskID})
+	return err
+}
+
+// GetSubTaskByParentID
+func GetSubTaskByParentID(parentID int64) ([]*Task, error) {
+	var tasks []*Task
+	err := common.Mgo.Find(context.Background(), consts.CollectionTask, bson.M{"parent_id": parentID}, nil, &tasks)
+	if err != nil {
+		return nil, err
+	}
+	return tasks, nil
+}
+
+// GetTaskByUserIDAndDate  根据用户ID和日期获取当日任务
+func GetTaskByUserIDAndDate(userID int64, date string) ([]*Task, error) {
+	var tasks []*Task
+	err := common.Mgo.Find(context.Background(), consts.CollectionTask, bson.M{"user_id": userID, "date": date, "type": 0}, nil, &tasks)
+	if err != nil {
+		return nil, err
+	}
+	return tasks, nil
+}
+
+// GetTaskByUserIDAndYear 根据用户ID和年份获取年度挑战任务
+func GetTaskByUserIDAndYear(userID int64, year int) ([]*Task, error) {
+	var tasks []*Task
+	err := common.Mgo.Find(context.Background(), consts.CollectionTask, bson.M{"user_id": userID, "year": year, "type": 1}, nil, &tasks)
+	if err != nil {
+		return nil, err
+	}
+	return tasks, nil
 }

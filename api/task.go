@@ -49,6 +49,7 @@ func CreateTask(ctx *gin.Context) (interface{}, error) {
 		Type:      request.Type,
 		Priority:  request.Priority,
 		Date:      utils.GetTodayDate(),
+		Year:      time.Now().Year(),
 		Progress:  0,
 		CreatedAt: time.Now().Unix(),
 		UpdatedAt: time.Now().Unix(),
@@ -87,6 +88,7 @@ type UpdateTaskParams struct {
 	TaskID   int64  `json:"task_id"`  // 任务ID
 	Name     string `json:"name"`     // 任务名称
 	Priority int    `json:"priority"` // 优先级(0-无 1-低 2-中 3-高)
+	// Date     string `json:"date"`     // 日期(yyyy-MM-dd)  // TODO: 改到某日期
 }
 
 // UpdateTask 创建任务
@@ -127,4 +129,182 @@ func UpdateTask(ctx *gin.Context) (interface{}, error) {
 	getAISuggestion(task) // 异步获取AI建议
 
 	return "ok", nil
+}
+
+type DeleteTaskParams struct {
+	TaskID int64 `json:"task_id"` // 任务ID
+}
+
+// DeleteTask 删除任务
+func DeleteTask(ctx *gin.Context) (interface{}, error) {
+	var request DeleteTaskParams
+	if err := ctx.BindJSON(&request); err != nil {
+		logger.Errorf("DeleteTask BindJSON error:%s", err)
+		return nil, err
+	}
+
+	if request.TaskID == 0 {
+		return nil, errors.New("task_id is empty")
+	}
+
+	err := model.DeleteTaskByTaskID(request.TaskID)
+	if err != nil {
+		logger.Errorf("model.DeleteTaskByTaskID error:%s", err)
+		return nil, err
+	}
+
+	return "ok", nil
+}
+
+type FinishedTaskarams struct {
+	TaskID int64 `json:"task_id"` // 任务ID
+}
+
+// FinishedTask 完成任务
+func FinishedTask(ctx *gin.Context) (interface{}, error) {
+	var request FinishedTaskarams
+	if err := ctx.BindJSON(&request); err != nil {
+		logger.Errorf("FinishedTask BindJSON error:%s", err)
+		return nil, err
+	}
+
+	if request.TaskID == 0 {
+		return nil, errors.New("task_id is empty")
+	}
+
+	// 获取任务信息
+	task, err := model.GetTaskByTaskID(request.TaskID)
+	if err != nil {
+		logger.Errorf("model.GetTaskByID error:%s", err)
+		return nil, err
+	}
+
+	update := bson.M{"$set": bson.M{
+		"progress":   1,
+		"updated_at": time.Now().Unix(),
+	}}
+
+	err = model.UpdateTaskByTaskID(request.TaskID, update)
+	if err != nil {
+		logger.Errorf("model.UpdateTaskByTaskID error:%s", err)
+		return nil, err
+	}
+
+	// 单日任务
+	if task.Type == 0 && task.ParentID != 0 {
+		calParentTaskProgress(task.ParentID)
+	} else if task.Type == 1 { // 年度挑战任务
+		calSubTaskProgress(task.TaskID)
+	}
+
+	return "ok", nil
+}
+
+// 重新计算父任务的progress
+func calParentTaskProgress(parentID int64) {
+	// 获取所有子任务
+	subTasks, err := model.GetSubTaskByParentID(parentID)
+	if err != nil {
+		logger.Errorf("model.GetSubTaskByParentID error:%s", err)
+	}
+
+	// 计算progress
+	finishedCnt := 0
+	for _, task := range subTasks {
+		if task.Progress == 1 {
+			finishedCnt++
+		}
+	}
+
+	progress := float64(finishedCnt) / float64(len(subTasks))
+
+	// 更新父任务的progress
+	update := bson.M{"$set": bson.M{
+		"progress":   progress,
+		"updated_at": time.Now().Unix(),
+	}}
+	err = model.UpdateTaskByTaskID(parentID, update)
+	if err != nil {
+		logger.Errorf("model.UpdateTaskByTaskID error:%s", err)
+	}
+}
+
+// 所有关联子任务的progress设置为1(完成)
+func calSubTaskProgress(taskID int64) {
+	// 获取所有子任务
+	subTasks, err := model.GetSubTaskByParentID(taskID)
+	if err != nil {
+		logger.Errorf("model.GetSubTaskByParentID error:%s", err)
+	}
+
+	// 更新子任务的progress
+	for _, task := range subTasks {
+		update := bson.M{"$set": bson.M{
+			"progress":   1,
+			"updated_at": time.Now().Unix(),
+		}}
+		err = model.UpdateTaskByTaskID(task.TaskID, update)
+		if err != nil {
+			logger.Errorf("model.UpdateTaskByTaskID error:%s", err)
+		}
+	}
+}
+
+type ListTaskRequest struct {
+	UserID int64  `json:"user_id" form:"user_id"` // 用户ID
+	Type   int    `json:"type" form:"type"`       // 任务类型(0-单日任务 1-年度挑战)
+	Date   string `json:"date" form:"date"`       // 日期(yyyy-MM-dd)
+	Year   int    `json:"year" form:"year"`       // 年份
+}
+
+// ListTask 获取任务列表
+func ListTask(ctx *gin.Context) (interface{}, error) {
+	var request ListTaskRequest
+	if err := ctx.Bind(&request); err != nil {
+		logger.Errorf("ListTask BindJSON error:%s", err)
+		return nil, err
+	}
+
+	if request.UserID == 0 {
+		return nil, errors.New("user_id is empty")
+	}
+
+	if request.Date == "" {
+		return nil, errors.New("date is empty")
+	}
+
+	if request.Year == 0 {
+		return nil, errors.New("year is empty")
+	}
+
+	if request.Type == 0 { // 单日任务
+		return listDayTask(request)
+	} else if request.Type == 1 { // 年度挑战任务
+		return listYearTask(request)
+	}
+
+	return nil, nil
+}
+
+// 获取单日任务列表
+func listDayTask(request ListTaskRequest) (interface{}, error) {
+	// 获取当日任务
+	tasks, err := model.GetTaskByUserIDAndDate(request.UserID, request.Date)
+	if err != nil {
+		logger.Errorf("model.GetTaskByUserIDAndDate error:%s", err)
+		return nil, err
+	}
+
+	return tasks, nil
+}
+
+// 获取年度挑战任务列表
+func listYearTask(request ListTaskRequest) (interface{}, error) {
+	// 获取年度挑战任务
+	tasks, err := model.GetTaskByUserIDAndYear(request.UserID, request.Year)
+	if err != nil {
+		logger.Errorf("model.GetTaskByUserIDAndYear error:%s", err)
+		return nil, err
+	}
+	return tasks, nil
 }
