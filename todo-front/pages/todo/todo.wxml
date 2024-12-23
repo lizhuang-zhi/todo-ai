@@ -18,7 +18,7 @@
   show="{{ showPop }}"
   closeable
   position="bottom"
-  custom-style="height: 35%"
+  custom-style="height: 45%"
   bind:close="onClose"
   z-index="999"
 >
@@ -45,7 +45,8 @@
 
   <view class="operate">
     <van-button round plain type="primary" bindtap="onClose">取消</van-button>
-    <van-button round type="info" bindtap="addTodo">添加</van-button>
+    <van-button wx:if="{{editID == ''}}" round type="info" bindtap="addTodo">添加</van-button>
+    <van-button wx:else round type="info" bindtap="editTodo">修改</van-button>
   </view>
 </view>
 </van-popup>
@@ -53,7 +54,8 @@
 <!-- TODO列表 -->
 <view class="todo-list">
   <view class="date-title">
-  2024-12-20
+  <!-- TODO: 改为真实日期 -->
+  2024-12-23
   </view>
 
   <!-- 待办列表 -->
@@ -65,12 +67,14 @@
         bindtouchend="touchEnd"
         bindtap="hideDelete"
         data-index="{{index}}">
-        <view class="finish" bind:tap="onFinishTask">x</view>
+        <view class="finish" bind:tap="onFinishTask" data-index="{{index}}" data-id="{{item.id}}">
+          <image class="todo_icon" src="{{item.todoPng}}" mode=""/>
+        </view>
         <view class="item-title">{{item.content}}</view>
       </view>
       <view class="del-btn-group">
-        <view class="btn-delete" bindtap="deleteTodo" data-index="{{index}}">删除</view>
-        <view class="btn-edit" bindtap="editTime" data-index="{{index}}">修改时间</view>
+        <view class="btn-delete" bindtap="deleteTodo" data-index="{{index}}" data-id="{{item.id}}">删除</view>
+        <view class="btn-edit" bindtap="editPop" data-index="{{index}}" data-item="{{item}}">修改</view>
       </view>
     </view>
   </view>

@@ -18,7 +18,7 @@ page {
 
   position: fixed;
   right: 40rpx;
-  bottom: 50rpx;
+  bottom: 250rpx;
   z-index: 999;
 }
 
@@ -72,6 +72,8 @@ page {
   background: rgb(240, 240, 240);
   margin: 10rpx 10rpx;
   border-radius: 15rpx;
+  height: 33vh;
+  overflow: scroll;
 }
 
 .date-title {
@@ -106,7 +108,14 @@ page {
 }
 
 .finish {
-  margin-right: 20rpx;
+  margin-right: 10rpx;
+  display: flex;
+  align-items: center;
+}
+
+.finish .todo_icon {
+  width: 45rpx;
+  height: 45rpx;
 }
 
 .item-title {
@@ -114,7 +123,7 @@ page {
 }
 
 .touch-move-active {
-  transform: translateX(-220rpx);
+  transform: translateX(-240rpx);
 }
 
 .del-btn-group {
@@ -122,13 +131,13 @@ page {
   right: 0; /* 修改位置 */
   top: 0;
   height: 100%;
-  width: 220rpx;
+  width: 200rpx;
   display: flex;
   z-index: 1; /* 添加层级 */
 }
 
 .btn-delete, .btn-edit {
-  width: 110rpx;
+  width: 100rpx;
   display: flex;
   justify-content: center;
   align-items: center;

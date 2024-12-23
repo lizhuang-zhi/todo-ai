@@ -1,3 +1,5 @@
+let api = require('../../common/api');
+
 Page({
 
   /**
@@ -7,10 +9,12 @@ Page({
     showPop: false,  // 新增待办弹出框
     taskName: "",   // 任务名称
     priority: '0',  // 任务优先级
+    editID: "",   // 编辑时的任务id
     todos: [],  
-
-    inputValue: '',
     startX: 0,
+
+    unFinishPng: "../../images/unfinish.png",
+    finishedPng: "../../images/finished.png",
   },
 
   showPopup() {
@@ -18,7 +22,10 @@ Page({
   },
 
   onClose() {
-    this.setData({ showPop: false });
+    this.setData({ 
+      showPop: false,
+      editID: "", 
+     });
   },
 
   onTaskNameChange(event) {
@@ -32,13 +39,6 @@ Page({
     });
   },
 
-  // 输入框内容变化
-  inputChange(e) {
-    this.setData({
-      inputValue: e.detail.value
-    })
-  },
-
   // 拉取某天数据
   getTaskList() {
     wx.showLoading({
@@ -48,32 +48,35 @@ Page({
     this.data.todos = []
 
     wx.request({
-      url: 'http://localhost:18888/task/list',
+      url: api.ApiHost + '/task/list',
       method: 'get',
       data: {
         "user_id": 1, 
-        "date": '2024-12-22',
+        // TODO: date穿入
+        "date": '2024-12-23',
         "type": 0,
         "year": '2024',
       },
       header: {
         'content-type': 'application/json',
-        'Authorization': 'Bearer 112233mrkleo' // 如果需要token
+        'Authorization': 'Bearer ' + api.AuthKey // 如果需要token
       },
       success: (res) => {
         if (!res || !res.data) {
-          wx.showToast({
-            title: '获取数据失败',
-            icon: 'none'
-          })
           return 
         }
 
         let tasks = []
         for(let item of res.data) {
+          if (item.progress == 1) {
+            continue
+          }
+
           tasks.push({
             id: item.task_id,
             content: item.name, 
+            priority: item.priority,
+            todoPng: this.data.unFinishPng,  // 统一为未完成
             showDelete: false,
           })
         }
@@ -112,7 +115,7 @@ Page({
     let priority = parseInt(this.data.priority)
 
     wx.request({
-      url: 'http://localhost:18888/task/create',
+      url: api.ApiHost + '/task/create',
       method: 'POST',
       data: {
         "user_id": 1, 
@@ -122,7 +125,7 @@ Page({
       },
       header: {
         'content-type': 'application/json',
-        'Authorization': 'Bearer 112233mrkleo' // 如果需要token
+        'Authorization': 'Bearer ' + api.AuthKey // 如果需要token
       },
       success: (res) => {
         if (!res || !res.data) {
@@ -133,9 +136,11 @@ Page({
           return 
         }
 
-        this.data.showPop = false
-        this.data.taskName = ""
-        this.data.priority = "0"
+        this.setData({
+          taskName: '', 
+          priority: '0',
+          showPop: false,
+        })
         // 重新拉取数据
         this.getTaskList()        
       },
@@ -152,33 +157,138 @@ Page({
   },
 
   // 完成某项任务
-  onFinishTask() {
-    wx.showLoading({
-      title: '加载中...'
+  onFinishTask(e) {
+    // 先将图片标记为完成, 等200ms后删除
+    const index = e.currentTarget.dataset.index
+    const todos = this.data.todos
+    todos[index].todoPng = this.data.finishedPng
+    this.setData({
+      todos
     })
-    // wx.request({
-    //   url: 'http://localhost:18888/task/finished',
-    //   method: 'post',
-    //   data: {
-    //     "task_id": 1, 
-    //   },
-    //   header: {
-    //     'content-type': 'application/json',
-    //     'Authorization': 'Bearer 112233mrkleo' // 如果需要token
-    //   },
-    //   success: (res) => {
-    //      this.getTaskList()
-    //   },
-    //   fail: (err) => {
-    //     wx.showToast({
-    //       title: '网络错误',
-    //       icon: 'none'
-    //     })
-    //   },
-    //   complete: () => {
-    //     wx.hideLoading()
-    //   }
-    // })
+
+    let timer = setTimeout(() => {
+      todos.splice(index, 1)
+      this.setData({
+        todos
+      })
+      clearTimeout(timer);
+    }, 100)
+
+    const id = e.currentTarget.dataset.id
+    wx.request({
+      url: api.ApiHost + '/task/finished',
+      method: 'post',
+      data: {
+        "task_id": id, 
+      },
+      header: {
+        'content-type': 'application/json',
+        'Authorization': 'Bearer ' + api.AuthKey // 如果需要token
+      },
+      success: (res) => {
+      },
+      fail: (err) => {
+        wx.showToast({
+          title: '网络错误',
+          icon: 'none'
+        })
+      },
+      complete: () => {
+        wx.hideLoading()
+      }
+    })
+  },
+
+  // 删除待办事项
+  deleteTodo(e) {
+    const index = e.currentTarget.dataset.index
+    const todos = this.data.todos
+    todos.splice(index, 1)
+    this.setData({
+      todos
+    })
+
+    const id = e.currentTarget.dataset.id
+    wx.request({
+      url: api.ApiHost + '/task/delete',
+      method: 'post',
+      data: {
+        "task_id": id, 
+      },
+      header: {
+        'content-type': 'application/json',
+        'Authorization': 'Bearer ' + api.AuthKey // 如果需要token
+      },
+      success: (res) => {
+          this.getTaskList()
+      },
+      fail: (err) => {
+        wx.showToast({
+          title: '网络错误',
+          icon: 'none'
+        })
+      },
+      complete: () => {
+      }
+    })
+  },
+
+  // 打开修改弹出框
+  editPop(e) {
+    let item = e.currentTarget.dataset.item
+    this.setData({
+      taskName: item.content, 
+      priority: item.priority.toString(),
+      editID: item.id,
+      showPop: true,
+    })
+  }, 
+
+  // 修改待办
+  editTodo() {
+    wx.showLoading({
+      title: '修改中...'
+    })
+    wx.request({
+      url: api.ApiHost + '/task/update',
+      method: 'post',
+      data: {
+        "task_id": this.data.editID, 
+        "name": this.data.taskName,
+        "priority": parseInt(this.data.priority),
+      },
+      header: {
+        'content-type': 'application/json',
+        'Authorization': 'Bearer ' + api.AuthKey // 如果需要token
+      },
+      success: (res) => {
+        if (!res || !res.data) {
+          wx.showToast({
+            title: '获取数据失败',
+            icon: 'none'
+          })
+          return 
+        }
+
+        // 重置数据
+        this.setData({
+          taskName: '', 
+          priority: '0',
+          editID: '',
+          showPop: false,
+        })
+        this.getTaskList()
+      },
+      fail: (err) => {
+        wx.showToast({
+          title: '网络错误',
+          icon: 'none'
+        })
+      },
+      complete: () => {
+        wx.hideLoading()
+      }
+    })
   },
 
   // 格式化时间
@@ -248,43 +358,7 @@ Page({
     })
   },
 
-  // 删除待办事项
-  deleteTodo(e) {
-    const index = e.currentTarget.dataset.index
-    const todos = this.data.todos
-    todos.splice(index, 1)
-    this.setData({
-      todos
-    })
-    wx.showToast({
-      title: '删除成功',
-      icon: 'success'
-    })
-  },
 
-  // 修改时间
-  editTime(e) {
-    const index = e.currentTarget.dataset.index
-    const todos = this.data.todos
-    
-    wx.showModal({
-      title: '提示',
-      content: '确定要更新时间为当前时间吗？',
-      success: (res) => {
-        if (res.confirm) {
-          todos[index].time = this.formatTime(new Date())
-          todos[index].showDelete = false
-          this.setData({
-            todos
-          })
-          wx.showToast({
-            title: '更新成功',
-            icon: 'success'
-          })
-        }
-      }
-    })
-  },
 
   /**
    * 生命周期函数--监听页面加载
