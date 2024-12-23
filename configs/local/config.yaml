@@ -33,6 +33,6 @@ logging:
 
 # Dify配置
 dify:
-  api_url: "http://localhost/v1"  # Dify API地址
+  api_url: "http://dify.fpsops.com/v1"  # Dify API地址
   workflow:
-
+    - "[todo]当日任务AI建议工作流:app-h3i1XFxkHABIBkJt6dJSAeCD"
