@@ -6,6 +6,7 @@ import (
 	"todo-ai/common"
 	"todo-ai/core"
 	"todo-ai/core/logger"
+	"todo-ai/events"
 	"todo-ai/model"
 	"todo-ai/utils"
 
@@ -72,16 +73,42 @@ func getAISuggestion(task *model.Task) {
 		return
 	}
 
-	// TODO: 根据Date日期, 带上节假日名称等信息
+	// 根据Date日期, 带上节假日名称等信息(暂时不带)
 
 	go func(t *model.Task) {
-		// TODO: 异步的获取AI建议内容
+		// 异步的获取AI建议内容
 		defer core.Recovery()
 
-		// TODO: 工作流所需: name, date, 节假日名称, 优先级
+		secret, ok := events.GlobalWorkflowMap["[todo]当日任务AI建议工作流"]
+		if !ok {
+			logger.Errorf("GlobalWorkflowMap secret not found: %s", "[todo]当日任务AI建议工作流")
+			return
+		}
 
-		// 写入AI建议到该任务DB中
+		aiCont, err := DoDifyWorkflow(secret, task.Name)
+		if err != nil {
+			logger.Errorf("DoDifyWorkflow error:%s", err)
+			return
+		}
+
+		err = model.UpdateTaskByTaskID(t.TaskID, bson.M{"$set": bson.M{"ai_suggestion": aiCont}})
+		if err != nil {
+			logger.Errorf("model.UpdateTaskByTaskID error:%s", err)
+		}
 	}(task)
+}
+
+// 请求线上工作流获取分析后的AI结果
+func DoDifyWorkflow(secret string, cont interface{}) (string, error) {
+	data := map[string]interface{}{
+		"inputs": map[string]interface{}{
+			"todoItem": cont,
+		}, // 其他参数
+		"response_mode": "blocking",       // blocking 阻塞、non_blocking 非阻塞
+		"user":          "todo-ai-server", // 必须要填写
+	}
+
+	return events.DoDifyWorkflow(secret, data)
 }
 
 type UpdateTaskParams struct {

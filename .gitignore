@@ -2,9 +2,12 @@
 build*/
 
 # 日志相关
-log/
 logs/
+logs/todo-ai.log
+logs/*.log
 *.log
+
+
 #临时目录
 tmp/
 
