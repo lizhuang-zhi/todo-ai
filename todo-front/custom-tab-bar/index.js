@@ -5,10 +5,10 @@ Component({
     selectedColor: "#450003",
     /* 补全list数组 */
     list: [{
-      pagePath: "/pages/achievement/achievement",
-      iconPath: "/images/achievement.png",
-      selectedIconPath: "/images/achievement-select.png",
-      text: "成就"
+      pagePath: "/pages/challenge/challenge",
+      iconPath: "/images/challenge.png",
+      selectedIconPath: "/images/challenge-select.png",
+      text: "挑战"
     }, {
       pagePath: "/pages/index/index",
       iconPath: "/images/todo.png",
