@@ -6,18 +6,18 @@ Component({
     /* 补全list数组 */
     list: [{
       pagePath: "/pages/achievement/achievement",
-      iconPath: "/images/index.png",
-      selectedIconPath: "/images/index-select.png",
+      iconPath: "/images/achievement.png",
+      selectedIconPath: "/images/achievement-select.png",
       text: "成就"
     }, {
       pagePath: "/pages/todo/todo",
-      iconPath: "/images/star.png",
-      selectedIconPath: "/images/star-select.png",
+      iconPath: "/images/todo.png",
+      selectedIconPath: "/images/todo-select.png",
       text: "Todo"
     }, {
       pagePath: "/pages/profile/profile",
-      iconPath: "/images/letter.png",
-      selectedIconPath: "/images/letter-select.png",
+      iconPath: "/images/profile.png",
+      selectedIconPath: "/images/profile-select.png",
       text: "我的"
     }]
   },
