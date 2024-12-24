@@ -8,7 +8,7 @@
 
   <!-- add图标 -->
   <cover-view class="add-item" bindtap="toRelease">
-    <cover-image src="../images/cat.png"></cover-image>
+    <cover-image src="../images/ai_suggest.png"></cover-image>
   </cover-view>
 
 </cover-view>

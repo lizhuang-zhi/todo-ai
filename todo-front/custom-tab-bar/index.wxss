@@ -43,6 +43,8 @@
   height: 90rpx;
   border-radius: 50%;
   background: #FF1D23;
+  /* background: #FF1D23; */
+  background: #eeeeee;
   margin-right: 70rpx;
   margin-left: 30rpx;
   margin-top: 23rpx;

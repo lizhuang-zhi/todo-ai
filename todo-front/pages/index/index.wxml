@@ -1,27 +1,96 @@
-<!--index.wxml-->
-<scroll-view class="scrollarea" scroll-y type="list">
-  <view class="container">
-    <view class="userinfo">
-      <block wx:if="{{canIUseNicknameComp && !hasUserInfo}}">
-        <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
-          <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
-        </button>
-        <view class="nickname-wrapper">
-          <text class="nickname-label">昵称</text>
-          <input type="nickname" class="nickname-input" placeholder="请输入昵称" bind:change="onInputChange" />
+<!-- 日历 -->
+<view class="calendar_container">
+  <van-calendar
+    show-title="{{ false }}"
+    poppable="{{ false }}"
+    show-confirm="{{ false }}"
+    class="calendar"
+    min-date="1729002017000"
+    bind:select="onSelectDate"
+  />
+</view>
+
+<!-- 新增待办按钮 -->
+<view class="add-todo" bindtap="showPopup">
+  <image class="add-img" src="../../images/add.png" mode=""/>
+</view>
+
+<!-- 弹出框 -->
+<van-popup
+  show="{{ showPop }}"
+  closeable
+  position="bottom"
+  custom-style="height: 45%"
+  bind:close="onClose"
+  z-index="999"
+>
+<view class="pop-box">
+  <van-cell-group>
+    <van-field
+      label="任务名称"
+      value="{{ taskName }}"
+      placeholder="请输入任务名称.."
+      border="{{ true }}"
+      bind:change="onTaskNameChange"
+    />
+  </van-cell-group>
+  
+  <view class="priority">
+    <view class="priority-label">优先级</view>
+    <van-radio-group value="{{ priority }}" bind:change="onPriorityChange">
+      <van-radio name="3">高优先级</van-radio>
+      <van-radio name="2">中优先级</van-radio>
+      <van-radio name="1">低优先级</van-radio>
+      <van-radio name="0">无优先级</van-radio>
+    </van-radio-group>
+  </view>
+
+  <view class="operate">
+    <van-button round plain type="primary" bindtap="onClose">取消</van-button>
+    <van-button wx:if="{{editID == ''}}" round type="info" bindtap="addTodo">添加</van-button>
+    <van-button wx:else round type="info" bindtap="editTodo">修改</van-button>
+  </view>
+</view>
+</van-popup>
+
+<!-- TODO列表 -->
+<view class="todo-list">
+  <view class="date-title">
+  {{selectDate}}
+  </view>
+
+  <!-- 待办列表 -->
+  <view class="todo-items">
+    <view class="item-wrap" wx:for="{{todos}}" wx:key="id">
+      <view class="item-content {{ item.showDelete ? 'touch-move-active' : ''}}" 
+        bindtouchstart="touchStart" 
+        bindtouchmove="touchMove"
+        bindtouchend="touchEnd"
+        bindtap="hideDelete"
+        data-index="{{index}}">
+        <view class="finish" bind:tap="onFinishTask" data-index="{{index}}" data-id="{{item.id}}">
+          <image class="todo_icon" src="{{item.todoPng}}" mode=""/>
         </view>
-      </block>
-      <block wx:elif="{{!hasUserInfo}}">
-        <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
-        <view wx:else> 请使用2.10.4及以上版本基础库 </view>
-      </block>
-      <block wx:else>
-        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-      </block>
-    </view>
-    <view class="usermotto">
-      <text class="user-motto">{{motto}}</text>
+        <view class="item-title">{{item.content}}</view>
+      </view>
+      <view class="ai_suggest" wx:if="{{item.aiSuggestion != ''}}" bind:tap="showAISuggestion" data-item="{{item}}">
+        <image class="ai_suggest_icon" src="../../images/ai_suggest.png" mode=""/>
+      </view>
+      <view class="del-btn-group">
+        <view class="btn-delete" bindtap="deleteTodo" data-index="{{index}}" data-id="{{item.id}}">删除</view>
+        <view class="btn-edit" bindtap="editPop" data-index="{{index}}" data-item="{{item}}">修改</view>
+      </view>
     </view>
   </view>
-</scroll-view>
+</view>
+
+<!-- AI建议展示框 -->
+<van-dialog
+  use-slot
+  title="AI 建议"
+  show="{{ showAiSuggestPop }}"
+>
+  <view class="ai_suggest_pop">
+    {{aiSuggestCont}}
+  </view>
+</van-dialog>

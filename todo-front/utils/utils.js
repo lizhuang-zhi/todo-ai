@@ -14,6 +14,17 @@ const formatNumber = n => {
   return n[1] ? n : `0${n}`
 }
 
+// 将“Tue Dec 24 2024 22:15:08 GMT+0800 (中国标准时间)”转为“yyyy-MM-DD”
+const formatDate = (date) => {
+  const d = new Date(date);
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, '0'); // 月份从0开始，需要+1
+  const day = String(d.getDate()).padStart(2, '0');
+  
+  return `${year}-${month}-${day}`;
+}
+
 module.exports = {
-  formatTime
+  formatTime,
+  formatDate,
 }
