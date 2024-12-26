@@ -8,6 +8,8 @@ Page({
    */
   data: {
     selectDate: "",  // 当前选中日期
+    holidays: {}, // 用于存储从后端获取的节假日数据
+
     showPop: false,  // 新增待办弹出框
     taskName: "",   // 任务名称
     priority: '0',  // 任务优先级
@@ -20,6 +22,8 @@ Page({
     showAiSuggestPop: false,    // 是否展示AI建议框
     aiSuggestCont: false,   // AI建议内容
   },
+
+
 
   // 选择日期(日历组件)
   onSelectDate(e) {
@@ -388,8 +392,91 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getHolidays()  // 获取日历数据
     this.initDate()   // 初始化日期
     this.getTaskList()
+  },
+
+  // vant日历组件所需函数
+  formatter(day) {
+    // 将日期转换为 YYYY-MM-DD 格式
+    const year = day.date.getFullYear();
+    const month = String(day.date.getMonth() + 1).padStart(2, '0');
+    const date = String(day.date.getDate()).padStart(2, '0');
+    const dateStr = `${year}-${month}-${date}`;
+
+    // 检查是否是节假日
+    const holiday = this.data.holidays[dateStr];
+    if (holiday) {
+      // 法定节假日显示红色标记
+      if (holiday.isHoliday) {
+        day.topInfo = holiday.name;
+        day.bottomInfo = '休';
+        day.className = 'holiday';
+        day.text = day.date.getDate();
+      } else {
+        // 普通节日只显示名称
+        day.topInfo = holiday.name;
+      }
+    }
+
+    // 处理日期范围选择的起始和结束标记
+    if (day.type === 'start') {
+      day.bottomInfo = '开始';
+    } else if (day.type === 'end') {
+      day.bottomInfo = '结束';
+    }
+
+    // 标记今天
+    const today = new Date();
+    if (today.getFullYear() === year && 
+        today.getMonth() === day.date.getMonth() && 
+        today.getDate() === day.date.getDate()) {
+      day.text = '今天';
+    }
+
+    return day;
+  },
+
+  // 获取节假日数据
+  async getHolidays() {
+    let date = new Date()
+
+    wx.request({
+      url: api.ApiHost + '/calendar/data',
+      method: 'get',
+      data: {
+        "year": date.getFullYear(), 
+      },
+      header: {
+        'content-type': 'application/json',
+        'Authorization': 'Bearer ' + api.AuthKey 
+      },
+      success: (res) => {
+        if (!res || !res.data) {
+          return 
+        }
+
+        // 转换数据格式为 { 'YYYY-MM-DD': holidayObject }
+        const holidays = {};
+        res.data.forEach(item => {
+          holidays[item.date] = item;
+        });
+
+        this.setData({ 
+          holidays,
+          formatter: this.formatter
+        });
+      },
+      fail: (err) => {
+        wx.showToast({
+          title: '网络错误',
+          icon: 'none'
+        })
+      },
+      complete: () => {
+      }
+    })
   },
 
   initDate() {  
