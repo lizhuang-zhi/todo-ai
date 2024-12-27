@@ -1,6 +1,7 @@
 <!-- 日历 -->
 <view class="calendar_container">
   <van-calendar
+    formatter="{{ formatter }}"
     show-title="{{ false }}"
     poppable="{{ false }}"
     show-confirm="{{ false }}"
