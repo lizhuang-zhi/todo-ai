@@ -39,20 +39,18 @@
 }
 
 .tab-bar .add-item {
-  width: 90rpx;
-  height: 90rpx;
+  width: 120rpx;
+  height: 120rpx;
   border-radius: 50%;
-  background: #FF1D23;
-  /* background: #FF1D23; */
   background: #eeeeee;
   margin-right: 70rpx;
   margin-left: 30rpx;
-  margin-top: 23rpx;
+  margin-top: 3rpx;
   display: flex;
   align-items: center;
 }
 .tab-bar .add-item cover-image {
-  width: 50%;
-  height: 50%;
+  width: 80%;
+  height: 80%;
   margin: 0 auto;
 }

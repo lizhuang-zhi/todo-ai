@@ -1,4 +1,8 @@
 {
   "usingComponents": {
-  }
+    "ec-canvas": "../../components/ec-canvas/ec-canvas"
+  },
+  "navigationBarTitleText": "个人中心",
+  "enablePullDownRefresh": true,
+  "backgroundColor": "#f5f6fa"
 }
