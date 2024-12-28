@@ -148,10 +148,13 @@
   margin-bottom: 16rpx;
 }
 
-.word-cloud-content {
-  height: 200rpx;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #999;
+.chart-container {
+  width: 100%;
+  height: 300px;
+  margin: 20px 0;
+}
+
+ec-canvas {
+  width: 100%;
+  height: 100%;
 }

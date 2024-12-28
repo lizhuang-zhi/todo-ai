@@ -1,14 +1,20 @@
 <cover-view class="tab-bar">
 
-  <cover-view wx:for="{{list}}" wx:key="index" class="tab-bar-item" data-path="{{item.pagePath}}" data-index="{{index}}"
+  <cover-view wx:for="{{leftList}}" wx:key="index" class="tab-bar-item" data-path="{{item.pagePath}}" data-index="0"
     bindtap="switchTab">
-    <cover-image src="{{selected == index ? item.selectedIconPath : item.iconPath}}"></cover-image>
-    <cover-view style="color: {{selected == index ? selectedColor : color}}">{{item.text}}</cover-view>
+    <cover-image src="{{selected == 0 ? item.selectedIconPath : item.iconPath}}"></cover-image>
+    <cover-view style="color: {{selected == 0 ? selectedColor : color}}">{{item.text}}</cover-view>
   </cover-view>
 
   <!-- add图标 -->
   <cover-view class="add-item" bindtap="toRelease">
     <cover-image src="../images/ai_suggest.png"></cover-image>
+  </cover-view>
+
+  <cover-view wx:for="{{rightList}}" wx:key="index" class="tab-bar-item" data-path="{{item.pagePath}}" data-index="1"
+    bindtap="switchTab">
+    <cover-image src="{{selected == 1 ? item.selectedIconPath : item.iconPath}}"></cover-image>
+    <cover-view style="color: {{selected == 1 ? selectedColor : color}}">{{item.text}}</cover-view>
   </cover-view>
 
 </cover-view>

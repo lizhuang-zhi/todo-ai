@@ -37,6 +37,7 @@ func Routers() *gin.Engine {
 	InitTaskRouter(APIGroup)     // 注册任务路由
 	InitAiPlanRouter(APIGroup)   // 注册AI当日规划路由(后续可能还有AI周规划等)
 	InitCalendarRouter(APIGroup) // 注册日历路由
+	InitProfileRouter(APIGroup)  // 注册个人路由
 
 	return Router
 }

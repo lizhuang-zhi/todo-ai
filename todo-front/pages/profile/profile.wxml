@@ -9,7 +9,7 @@
       <view class="username">{{userInfo.nickName || '用户昵称'}}</view>
       <view class="user-level">
         <image class="level-icon" src="/images/level-icon.png" />
-        <text>Lv.1初出茅庐</text>
+        <text>{{levelTitle}}</text>
       </view>
     </view>
   </view>
@@ -49,11 +49,11 @@
     </view>
     
     <!-- 词云展示 -->
-    <view class="word-cloud">
+    <!-- <view class="word-cloud">
       <view class="word-cloud-title">词云展示</view>
-      <view class="word-cloud-content">
-        <!-- 词云内容 -->
+      <view class="chart-container">
+        <ec-canvas id="wordCloudChart" canvas-id="wordCloudChart" ec="{{ ecWordCloud }}"></ec-canvas>
       </view>
-    </view>
+    </view> -->
   </view>
 </view>

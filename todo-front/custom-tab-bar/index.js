@@ -4,17 +4,13 @@ Component({
     color: "#7A7E83",
     selectedColor: "#450003",
     /* 补全list数组 */
-    list: [{
-      pagePath: "/pages/challenge/challenge",
-      iconPath: "/images/challenge.png",
-      selectedIconPath: "/images/challenge-select.png",
-      text: "挑战"
-    }, {
+    leftList: [{
       pagePath: "/pages/index/index",
       iconPath: "/images/todo.png",
       selectedIconPath: "/images/todo-select.png",
       text: "Todo"
-    }, {
+    }],
+    rightList: [{
       pagePath: "/pages/profile/profile",
       iconPath: "/images/profile.png",
       selectedIconPath: "/images/profile-select.png",
@@ -23,23 +19,23 @@ Component({
   },
   attached() {
   },
-  // 添加页面显示的生命周期函数
-  pageLifetimes: {
-    show: function() {
-      // 获取当前页面路径
-      const pages = getCurrentPages();
-      const currentPage = pages[pages.length - 1];
-      const route = '/' + currentPage.route;
+  // // 添加页面显示的生命周期函数
+  // pageLifetimes: {
+  //   show: function() {
+  //     // 获取当前页面路径
+  //     const pages = getCurrentPages();
+  //     const currentPage = pages[pages.length - 1];
+  //     const route = '/' + currentPage.route;
       
-      // 根据当前页面路径设置选中状态
-      const selected = this.data.list.findIndex(item => item.pagePath === route);
-      if (selected !== -1) {
-        this.setData({
-          selected
-        });
-      }
-    }
-  },
+  //     // 根据当前页面路径设置选中状态
+  //     const selected = this.data.list.findIndex(item => item.pagePath === route);
+  //     if (selected !== -1) {
+  //       this.setData({
+  //         selected
+  //       });
+  //     }
+  //   }
+  // },
   methods: {
     // tabbar装换
     switchTab(e) {

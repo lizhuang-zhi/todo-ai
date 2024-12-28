@@ -43,8 +43,8 @@
   height: 120rpx;
   border-radius: 50%;
   background: #eeeeee;
-  margin-right: 70rpx;
-  margin-left: 30rpx;
+  /* margin-right: 70rpx; */
+  /* margin-left: 70rpx; */
   margin-top: 3rpx;
   display: flex;
   align-items: center;

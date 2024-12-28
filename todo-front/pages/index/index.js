@@ -23,8 +23,6 @@ Page({
     aiSuggestCont: false,   // AI建议内容
   },
 
-
-
   // 选择日期(日历组件)
   onSelectDate(e) {
     let detailDate = e.detail
@@ -501,7 +499,7 @@ Page({
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {
       this.getTabBar().setData({
-        selected: 1
+        selected: 0
       })
     }
   },

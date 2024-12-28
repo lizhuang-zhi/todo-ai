@@ -5,7 +5,8 @@
   "main": ".eslintrc.js",
   "dependencies": {
     "@vant/weapp": "^1.11.7",
-    "echarts": "^5.5.1"
+    "echarts": "^5.5.1",
+    "echarts-wordcloud": "^2.1.0"
   },
   "devDependencies": {},
   "scripts": {

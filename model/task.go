@@ -82,3 +82,31 @@ func GetTaskByUserIDAndYear(userID int64, year int) ([]*Task, error) {
 	}
 	return tasks, nil
 }
+
+// 根据用户ID获取总任务数量
+func GetTotalTaskLenByUserID(userID int64) (int64, error) {
+	total, err := common.Mgo.Count(context.Background(), consts.CollectionTask, bson.M{"user_id": userID})
+	if err != nil {
+		return 0, err
+	}
+	return total, nil
+}
+
+// 根据用户ID获取已完成任务数量
+func GetFinishedTaskLenByUserID(userID int64) (int64, error) {
+	total, err := common.Mgo.Count(context.Background(), consts.CollectionTask, bson.M{"user_id": userID, "progress": 1})
+	if err != nil {
+		return 0, err
+	}
+	return total, nil
+}
+
+// 根据用户ID和30天前的日期, 获取用户近30天的任务数据
+func GetTaskByUserIDAndRecentlyDate(userID int64, date string) ([]*Task, error) {
+	var tasks []*Task
+	err := common.Mgo.Find(context.Background(), consts.CollectionTask, bson.M{"user_id": userID, "date": bson.M{"$gte": date}}, nil, &tasks)
+	if err != nil {
+		return nil, err
+	}
+	return tasks, nil
+}
