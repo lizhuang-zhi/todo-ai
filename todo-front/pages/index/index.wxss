@@ -76,9 +76,52 @@ page {
   overflow: scroll;
 }
 
+.todo-top-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .date-title {
   font-size: 3c0rpx;
   color: #999;
+  margin-left: 10rpx;
+}
+
+.date-ai-suggest {
+  margin-right: 10rpx;
+  padding: 8rpx 25rpx;
+  border-radius: 20rpx;
+  background-color: #fff;
+  box-shadow: 0 0 25rpx rgba(0, 0, 0, 0.1);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+}
+
+.ai_tit {
+  color: #333;
+  font-size: 24rpx;
+  margin-left: 5rpx;
+}
+
+.think_icon {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.red_dot {
+  width: 15rpx;
+  height: 15rpx;
+  background-color: red;
+  border-radius: 50%;
+
+  position: absolute;
+  top: 10%;
+  right: 10%;
 }
 
 .todo-items {
@@ -118,6 +161,11 @@ page {
   height: 45rpx;
 }
 
+.right_cont_container {
+  display: flex;
+  align-items: center;
+}
+
 .item-title {
   font-size: 32rpx;
 }
@@ -127,12 +175,9 @@ page {
 }
 
 .ai_suggest {
-  position: absolute;
-  right: 3%; 
-  top: 27%;
   width: 40rpx;
   height: 40rpx;
-  z-index: 99; /* 添加层级 */
+  margin-left: 20rpx;
 }
 
 .ai_suggest_icon {
@@ -169,6 +214,19 @@ page {
 
 /* AI建议展示框 */
 .ai_suggest_pop {
+  padding: 20rpx 40rpx;
+  font-size: 32rpx;
+}
+
+.suggest-text {
+  white-space: pre-wrap;  /* 保留换行和空格 */
+  word-wrap: break-word;  /* 允许长单词换行 */
+  display: block;
+  font-size: 26rpx;
+}
+
+/* AI每日规划合理化建议展示框 */
+.date_ai_suggest_pop {
   padding: 20rpx 40rpx;
   font-size: 32rpx;
 }

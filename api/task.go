@@ -62,9 +62,76 @@ func CreateTask(ctx *gin.Context) (interface{}, error) {
 		return nil, err
 	}
 
-	getAISuggestion(taskEntity) // 异步获取AI建议
+	getAISuggestion(taskEntity)     // 异步获取AI建议
+	getDateAISuggestion(taskEntity) // 异步获取AI今日规划合理化建议
 
 	return id, nil
+}
+
+// 异步获取AI今日规划合理化建议
+func getDateAISuggestion(task *model.Task) {
+	if task.Type != 0 { // 单日任务
+		return
+	}
+
+	err := model.UpsertDateAiSuggestByUserIDAndDate(task.UserID, task.Date,
+		bson.M{"$set": bson.M{
+			"last_suggestion": "",
+			"show_dot":        false, // 不显示小红点
+			"status":          1,     // 生成中,
+			"updated_at":      time.Now().Unix(),
+		}})
+	if err != nil {
+		logger.Errorf("model.UpsertDateAiSuggestByUserIDAndDate error:%s", err)
+	}
+
+	go func(t *model.Task) {
+		// 异步的获取AI建议内容
+		defer core.Recovery()
+
+		// secret, ok := events.GlobalWorkflowMap["[todo]当日任务排期合理化工作流"]
+		// if !ok {
+		// 	logger.Errorf("GlobalWorkflowMap secret not found: %s", "[todo]当日任务排期合理化工作流")
+		// 	return
+		// }
+
+		// TODO: 获取今日代办任务, 并整理格式
+		// 近10天的历史待办事项
+		// 今天的日期、节日等情况
+
+		// dateAiSuggest, err := DoDifyWorkflowDateAiSuggest(secret, task.Name)
+		// if err != nil {
+		// 	logger.Errorf("DoDifyWorkflow error:%s", err)
+		// 	return
+		// }
+
+		err := model.UpsertDateAiSuggestByUserIDAndDate(task.UserID, task.Date,
+			bson.M{"$set": bson.M{
+				// TODO: 替换ai建议内容
+				"last_suggestion": "xxxxxx",
+				"status":          3,    // 生成成功,
+				"show_dot":        true, // 显示小红点
+				"updated_at":      time.Now().Unix(),
+			}})
+		if err != nil {
+			logger.Errorf("model.UpsertDateAiSuggestByUserIDAndDate error:%s", err)
+		}
+	}(task)
+}
+
+func DoDifyWorkflowDateAiSuggest(secret string, cont interface{}) (string, error) {
+	data := map[string]interface{}{
+		"inputs": map[string]interface{}{
+			// TODO: 待修改
+			"todayTasks": cont,
+			"history":    "",
+			"day":        "",
+		}, // 其他参数
+		"response_mode": "blocking",       // blocking 阻塞、non_blocking 非阻塞
+		"user":          "todo-ai-server", // 必须要填写
+	}
+
+	return events.DoDifyWorkflow(secret, data)
 }
 
 // go协程异步获取AI建议
@@ -155,7 +222,8 @@ func UpdateTask(ctx *gin.Context) (interface{}, error) {
 		return nil, err
 	}
 
-	getAISuggestion(task) // 异步获取AI建议
+	getAISuggestion(task)     // 异步获取AI建议
+	getDateAISuggestion(task) // 异步获取AI今日规划合理化建议
 
 	return "ok", nil
 }

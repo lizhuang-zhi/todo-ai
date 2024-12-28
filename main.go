@@ -159,6 +159,13 @@ func (s *Server) initUUID() error {
 		return err
 	}
 
+	common.SuggestUUID = core.NewUUID(common.Mgo, consts.CollectionCount, consts.SuggestUUID)
+	// 设置初始值为1
+	err = common.SuggestUUID.Init(1)
+	if err != nil {
+		return err
+	}
+
 	return nil
 }
 

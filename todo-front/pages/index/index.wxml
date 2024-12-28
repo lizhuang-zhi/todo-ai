@@ -56,9 +56,18 @@
 
 <!-- TODO列表 -->
 <view class="todo-list">
-  <view class="date-title">
-  {{selectDate}}
+  <view class="todo-top-box">
+    <view class="date-title">
+      {{selectDate}}
+    </view>
+    <view class="date-ai-suggest" bind:tap="showAiSuggestPop">
+      <image class="think_icon" src="../../images/think.png" mode=""/>
+      <view class="ai_tit">AI建议</view>
+      <!-- 小红点 -->
+      <view class="red_dot" wx:if="{{showDot}}"></view>
+    </view>
   </view>
+
 
   <!-- 待办列表 -->
   <view class="todo-items">
@@ -72,11 +81,15 @@
         <view class="finish" bind:tap="onFinishTask" data-index="{{index}}" data-id="{{item.id}}">
           <image class="todo_icon" src="{{item.todoPng}}" mode=""/>
         </view>
-        <view class="item-title">{{item.content}}</view>
+        <view class="right_cont_container">
+          <view class="item-title">{{item.content}}</view>
+          <!-- ai建议图标(小灯泡) -->
+          <view class="ai_suggest" wx:if="{{!item.showDelete && item.aiSuggestion != ''}}" bind:tap="showAISuggestion" data-item="{{item}}">
+            <image class="ai_suggest_icon" src="../../images/ai_suggest.png" mode=""/>
+          </view>
+        </view>
       </view>
-      <view class="ai_suggest" wx:if="{{item.aiSuggestion != ''}}" bind:tap="showAISuggestion" data-item="{{item}}">
-        <image class="ai_suggest_icon" src="../../images/ai_suggest.png" mode=""/>
-      </view>
+
       <view class="del-btn-group">
         <view class="btn-delete" bindtap="deleteTodo" data-index="{{index}}" data-id="{{item.id}}">删除</view>
         <view class="btn-edit" bindtap="editPop" data-index="{{index}}" data-item="{{item}}">修改</view>
@@ -92,6 +105,17 @@
   show="{{ showAiSuggestPop }}"
 >
   <view class="ai_suggest_pop">
-    {{aiSuggestCont}}
+    <text class="suggest-text">{{aiSuggestCont}}</text>
+  </view>
+</van-dialog>
+
+<!-- AI每日规划合理化建议展示框 -->
+<van-dialog
+  use-slot
+  title="AI 规划合理化建议"
+  show="{{ showDateAiSuggestPop }}"
+>
+  <view class="date_ai_suggest_pop">
+    <text class="">{{dateAiSuggestCont}}</text>
   </view>
 </van-dialog>

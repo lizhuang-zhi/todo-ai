@@ -20,7 +20,48 @@ Page({
     unFinishPng: "../../images/unfinish.png",
     finishedPng: "../../images/finished.png",
     showAiSuggestPop: false,    // 是否展示AI建议框
-    aiSuggestCont: false,   // AI建议内容
+    aiSuggestCont: false,   // AI建议内容(单个任务)
+
+    showDot: true, // AI建议的小红点
+    dateAiSuggestStatus: 0, // 状态(0-未生成, 1-正在生成, 2-生成失败 3-生成成功)
+    dateAiSuggestCont: "", // Ai每日合理化建议内容
+    showDateAiSuggestPop: false,    // 是否展示Ai每日合理化建议内容框
+  },
+
+  // 点击查看AI建议
+  showAiSuggestPop() {
+    this.setData({
+      showDot: false,
+      showDateAiSuggestPop: true, 
+    });
+
+    this.asyncUpdateDot()
+  },
+
+  // 异步更新DB小红点状态(已点击)
+  asyncUpdateDot() {
+    wx.request({
+      url: api.ApiHost + '/date_ai_suggest/click',
+      method: 'post',
+      data: {
+        "user_id": 1, 
+        "date": this.data.selectDate,
+      },
+      header: {
+        'content-type': 'application/json',
+        'Authorization': 'Bearer ' + api.AuthKey // 如果需要token
+      },
+      success: (res) => {
+      },
+      fail: (err) => {
+        wx.showToast({
+          title: '网络错误',
+          icon: 'none'
+        })
+      },
+      complete: () => {
+      }
+    })
   },
 
   // 选择日期(日历组件)
@@ -102,6 +143,43 @@ Page({
 
         this.setData({
           todos: tasks,
+        });
+      },
+      fail: (err) => {
+        wx.showToast({
+          title: '网络错误',
+          icon: 'none'
+        })
+      },
+      complete: () => {
+        wx.hideLoading()
+      }
+    })
+  },
+
+  // 拉取某天AI合理化建议数据
+  getAiSuggestionData() {  
+    wx.request({
+      url: api.ApiHost + '/date_ai_suggest/data',
+      method: 'get',
+      data: {
+        // TODO: 改为年获取
+        "user_id": 1, 
+        "date": this.data.selectDate,
+      },
+      header: {
+        'content-type': 'application/json',
+        'Authorization': 'Bearer ' + api.AuthKey // 如果需要token
+      },
+      success: (res) => {
+        if (!res || !res.data) {
+          return 
+        }
+
+        this.setData({
+          showDot: res.data.show_dot,
+          dateAiSuggestStatus: res.data.status,
+          dateAiSuggestCont: res.data.last_suggestion,
         });
       },
       fail: (err) => {
@@ -393,6 +471,7 @@ Page({
     this.getHolidays()  // 获取日历数据
     this.initDate()   // 初始化日期
     this.getTaskList()
+    this.getAiSuggestionData()
   },
 
   // vant日历组件所需函数

@@ -24,7 +24,7 @@ Page({
 
   async onLoad() {
     this.getUserInfo();
-    this.initData();
+    await this.initData();
     await this.initCharts();
   },
 
@@ -41,7 +41,7 @@ Page({
   },
 
   // 初始化数据
-  initData() {
+  async initData() {
     wx.request({
       url: api.ApiHost + '/profile/data',
       method: 'get',

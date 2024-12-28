@@ -10,6 +10,7 @@ var (
 
 	Mgo *core.Mongodb
 
-	UserUUID core.IntUUID // 用户信息id
-	TaskUUID core.IntUUID // 记录id
+	UserUUID    core.IntUUID // 用户信息id
+	TaskUUID    core.IntUUID // 记录id
+	SuggestUUID core.IntUUID // 建议id
 )

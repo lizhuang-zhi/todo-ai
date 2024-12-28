@@ -6,7 +6,7 @@
       <image class="avatar" src="{{userInfo.avatarUrl || '/images/default-avatar.png'}}" />
     </view>
     <view class="user-detail">
-      <view class="username">{{userInfo.nickName || '用户昵称'}}</view>
+      <view class="username">{{userInfo.nickName || '李白'}}</view>
       <view class="user-level">
         <image class="level-icon" src="/images/level-icon.png" />
         <text>{{levelTitle}}</text>
