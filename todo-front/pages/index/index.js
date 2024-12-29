@@ -22,14 +22,73 @@ Page({
     showAiSuggestPop: false,    // 是否展示AI建议框
     aiSuggestCont: false,   // AI建议内容(单个任务)
 
-    showDot: true, // AI建议的小红点
+    showDot: false, // AI建议的小红点
     dateAiSuggestStatus: 0, // 状态(0-未生成, 1-正在生成, 2-生成失败 3-生成成功)
     dateAiSuggestCont: "", // Ai每日合理化建议内容
     showDateAiSuggestPop: false,    // 是否展示Ai每日合理化建议内容框
   },
 
+  // 应用Ai规划合理化建议
+  applyAiSuggest() {
+    if (this.data.dateAiSuggestCont == "") {
+      return 
+    }
+
+    wx.showLoading({
+      title: '应用中...'
+    })
+
+    wx.request({
+      url: api.ApiHost + '/date_ai_suggest/apply',
+      method: 'POST',
+      data: {
+        "user_id": 1, 
+        "date": this.data.selectDate,
+        "ai_suggest": this.data.dateAiSuggestCont,
+      },
+      header: {
+        'content-type': 'application/json',
+        'Authorization': 'Bearer ' + api.AuthKey // 如果需要token
+      },
+      success: (res) => {
+        if (!res || !res.data) {
+          wx.showToast({
+            title: '应用失败',
+            icon: 'none'
+          })
+          return 
+        }
+
+        if (res.data == "ok") {
+          wx.showToast({
+            title: '应用成功',
+          })
+          // 重新拉取数据
+          this.refreshData(0)     
+        }
+      },
+      fail: (err) => {
+        wx.showToast({
+          title: '网络错误',
+          icon: 'none'
+        })
+      },
+      complete: () => {
+        wx.hideLoading()
+      }
+    })
+  },
+
   // 点击查看AI建议
   showAiSuggestPop() {
+    if (this.data.dateAiSuggestCont == "") {
+      wx.showToast({
+        title: '暂无建议',
+        icon: 'none'
+      })
+      return 
+    }
+
     this.setData({
       showDot: false,
       showDateAiSuggestPop: true, 
@@ -71,7 +130,7 @@ Page({
       selectDate: utils.formatDate(detailDate)
     })
 
-    this.getTaskList()
+    this.refreshData(0)
   },
 
   showPopup() {
@@ -138,6 +197,7 @@ Page({
             todoPng: this.data.unFinishPng,  // 统一为未完成
             showDelete: false,
             aiSuggestion: item.ai_suggestion,  // ai建议内容
+            date: item.date
           })
         }
 
@@ -173,6 +233,11 @@ Page({
       },
       success: (res) => {
         if (!res || !res.data) {
+          this.setData({
+            showDot: false,
+            dateAiSuggestStatus: 0,
+            dateAiSuggestCont: "",
+          });
           return 
         }
 
@@ -219,6 +284,7 @@ Page({
         "name": this.data.taskName.trim(),
         "type": 0,
         "priority": priority,
+        "date": this.data.selectDate,
       },
       header: {
         'content-type': 'application/json',
@@ -239,7 +305,7 @@ Page({
           showPop: false,
         })
         // 重新拉取数据
-        this.getTaskList()        
+        this.refreshData(10)        
       },
       fail: (err) => {
         wx.showToast({
@@ -317,7 +383,7 @@ Page({
         'Authorization': 'Bearer ' + api.AuthKey // 如果需要token
       },
       success: (res) => {
-          this.getTaskList()
+        this.refreshData(0)
       },
       fail: (err) => {
         wx.showToast({
@@ -374,7 +440,7 @@ Page({
           editID: '',
           showPop: false,
         })
-        this.getTaskList()
+        this.refreshData(10)
       },
       fail: (err) => {
         wx.showToast({
@@ -470,8 +536,17 @@ Page({
   onLoad: function (options) {
     this.getHolidays()  // 获取日历数据
     this.initDate()   // 初始化日期
+    this.refreshData(0)
+  },
+
+  // 重拉数据
+  refreshData(dateAiDelay) {
     this.getTaskList()
-    this.getAiSuggestionData()
+
+    let timer = setTimeout(() => {
+      this.getAiSuggestionData()
+      clearTimeout(timer)
+    }, dateAiDelay * 1000)
   },
 
   // vant日历组件所需函数

@@ -48,6 +48,7 @@
     "van-radio-group": "@vant/weapp/radio-group/index",
     "van-button": "@vant/weapp/button/index",
     "van-dialog": "@vant/weapp/dialog/index",
-    "ec-canvas": "/components/ec-canvas/ec-canvas"
+    "ec-canvas": "/components/ec-canvas/ec-canvas",
+    "ai-format": "/components/AiFormat/AiFormat"
   }
 }

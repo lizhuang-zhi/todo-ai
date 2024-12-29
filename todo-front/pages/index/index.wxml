@@ -113,9 +113,14 @@
 <van-dialog
   use-slot
   title="AI 规划合理化建议"
+  width="85%"
   show="{{ showDateAiSuggestPop }}"
+  showCancelButton="true"
+  confirmButtonText="应用"
+  cancelButtonText="取消"
+  bind:confirm="applyAiSuggest"
 >
   <view class="date_ai_suggest_pop">
-    <text class="">{{dateAiSuggestCont}}</text>
+    <ai-format aiFormatText='{{dateAiSuggestCont}}' dateTodoList='{{todos}}'></ai-format>
   </view>
 </van-dialog>

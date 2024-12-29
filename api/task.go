@@ -4,11 +4,11 @@ import (
 	"errors"
 	"time"
 	"todo-ai/common"
+	"todo-ai/common/ai_data"
 	"todo-ai/core"
 	"todo-ai/core/logger"
 	"todo-ai/events"
 	"todo-ai/model"
-	"todo-ai/utils"
 
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/bson"
@@ -19,6 +19,7 @@ type CreateTaskParams struct {
 	Name     string `json:"name"`     // 任务名称
 	Type     int    `json:"type"`     // 任务类型(0-单日任务 1-年度挑战)
 	Priority int    `json:"priority"` // 优先级(0-无 1-低 2-中 3-高)
+	Date     string `json:"date"`     // 日期(yyyy-MM-dd)
 }
 
 // CreateTask 创建任务
@@ -37,6 +38,10 @@ func CreateTask(ctx *gin.Context) (interface{}, error) {
 		return nil, errors.New("name is empty")
 	}
 
+	if request.Date == "" {
+		return nil, errors.New("date is empty")
+	}
+
 	id, err := common.TaskUUID.Get()
 	if err != nil {
 		logger.Errorf("TaskUUID Get error:%s", err)
@@ -49,7 +54,7 @@ func CreateTask(ctx *gin.Context) (interface{}, error) {
 		Name:      request.Name,
 		Type:      request.Type,
 		Priority:  request.Priority,
-		Date:      utils.GetTodayDate(),
+		Date:      request.Date,
 		Year:      time.Now().Year(),
 		Progress:  0,
 		CreatedAt: time.Now().Unix(),
@@ -89,26 +94,42 @@ func getDateAISuggestion(task *model.Task) {
 		// 异步的获取AI建议内容
 		defer core.Recovery()
 
-		// secret, ok := events.GlobalWorkflowMap["[todo]当日任务排期合理化工作流"]
-		// if !ok {
-		// 	logger.Errorf("GlobalWorkflowMap secret not found: %s", "[todo]当日任务排期合理化工作流")
-		// 	return
-		// }
+		secret, ok := events.GlobalWorkflowMap["[todo]当日任务排期合理化工作流"]
+		if !ok {
+			logger.Errorf("GlobalWorkflowMap secret not found: %s", "[todo]当日任务排期合理化工作流")
+			return
+		}
 
-		// TODO: 获取今日代办任务, 并整理格式
+		// 获取今日代办任务, 并整理格式
+		todayTasksStr, err := ai_data.GetTodayTasksData(t.UserID, t.Date)
+		if err != nil {
+			logger.Errorf("user_id[%s], date[%s], GetTodayTasksData error:%s", t.UserID, t.Date, err)
+			return
+		}
+
 		// 近10天的历史待办事项
+		historyStr, err := ai_data.GetHistoryTasksData(t.UserID)
+		if err != nil {
+			logger.Errorf("user_id[%s], date[%s], GetTodayTasksData error:%s", t.UserID, t.Date, err)
+			return
+		}
+
 		// 今天的日期、节日等情况
+		holidayStr, err := ai_data.GetHolidayData(t.Date)
+		if err != nil {
+			logger.Errorf("user_id[%s], date[%s], GetTodayTasksData error:%s", t.UserID, t.Date, err)
+			return
+		}
 
-		// dateAiSuggest, err := DoDifyWorkflowDateAiSuggest(secret, task.Name)
-		// if err != nil {
-		// 	logger.Errorf("DoDifyWorkflow error:%s", err)
-		// 	return
-		// }
+		dateAiSuggest, err := DoDifyWorkflowDateAiSuggest(secret, todayTasksStr, historyStr, holidayStr)
+		if err != nil {
+			logger.Errorf("DoDifyWorkflow error:%s", err)
+			return
+		}
 
-		err := model.UpsertDateAiSuggestByUserIDAndDate(task.UserID, task.Date,
+		err = model.UpsertDateAiSuggestByUserIDAndDate(task.UserID, task.Date,
 			bson.M{"$set": bson.M{
-				// TODO: 替换ai建议内容
-				"last_suggestion": "xxxxxx",
+				"last_suggestion": dateAiSuggest,
 				"status":          3,    // 生成成功,
 				"show_dot":        true, // 显示小红点
 				"updated_at":      time.Now().Unix(),
@@ -119,13 +140,12 @@ func getDateAISuggestion(task *model.Task) {
 	}(task)
 }
 
-func DoDifyWorkflowDateAiSuggest(secret string, cont interface{}) (string, error) {
+func DoDifyWorkflowDateAiSuggest(secret string, todayTasksStr, historyStr, holidayStr interface{}) (string, error) {
 	data := map[string]interface{}{
 		"inputs": map[string]interface{}{
-			// TODO: 待修改
-			"todayTasks": cont,
-			"history":    "",
-			"day":        "",
+			"todayTasks": todayTasksStr,
+			"history":    historyStr,
+			"day":        holidayStr,
 		}, // 其他参数
 		"response_mode": "blocking",       // blocking 阻塞、non_blocking 非阻塞
 		"user":          "todo-ai-server", // 必须要填写
@@ -404,4 +424,29 @@ func listYearTask(request ListTaskRequest) (interface{}, error) {
 		return nil, err
 	}
 	return tasks, nil
+}
+
+type GetTaskDetailRequest struct {
+	TaskID int64 `json:"task_id" form:"task_id"` // 任务ID
+}
+
+// GetTaskDetail 根据任务id获取任务详情
+func GetTaskDetail(ctx *gin.Context) (interface{}, error) {
+	var request GetTaskDetailRequest
+	if err := ctx.Bind(&request); err != nil {
+		logger.Errorf("GetTaskDetail BindJSON error:%s", err)
+		return nil, err
+	}
+
+	if request.TaskID == 0 {
+		return nil, errors.New("task_id is empty")
+	}
+
+	task, err := model.GetTaskByTaskID(request.TaskID)
+	if err != nil {
+		logger.Errorf("task_id[%d], model.GetTaskByTaskID error:%s", request.TaskID, err)
+		return nil, err
+	}
+
+	return task, nil
 }

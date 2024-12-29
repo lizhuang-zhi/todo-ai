@@ -227,6 +227,10 @@ page {
 
 /* AI每日规划合理化建议展示框 */
 .date_ai_suggest_pop {
-  padding: 20rpx 40rpx;
+  padding: 20rpx 10rpx;
   font-size: 32rpx;
+}
+
+.date_ai_suggest_text {
+  font-size: 26rpx;
 }

@@ -110,3 +110,14 @@ func GetTaskByUserIDAndRecentlyDate(userID int64, date string) ([]*Task, error) 
 	}
 	return tasks, nil
 }
+
+// 根据用户ID和日期获取任务, 按照日期倒序排序
+// TODO: 这里有bug, 不是取近n天, 而是历史数据的80条数据
+func GetTaskByUserIDAndDateDesc(userID int64, date string) ([]*Task, error) {
+	var tasks []*Task
+	err := common.Mgo.FindSortDesRange(context.Background(), consts.CollectionTask, bson.M{"user_id": userID, "date": bson.M{"$gte": date}}, "date", 0, 80, &tasks)
+	if err != nil {
+		return nil, err
+	}
+	return tasks, nil
+}

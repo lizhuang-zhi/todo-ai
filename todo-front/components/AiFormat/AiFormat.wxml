@@ -1,0 +1,75 @@
+<view class="ai-parser">
+  <block wx:for="{{tasks}}" wx:key="index">
+    <!-- 拆分任务 -->
+    <block wx:if="{{item.type === 'split'}}">
+      <view class="section-title">
+        <image class="section_icon" src="/images/split.png" ></image>
+        <view class="title">拆分任务</view>
+      </view>
+      <view class="original-task">
+        <view class="task-label">原任务</view>
+        <view class="task-content">
+          {{item.originalTask.name}}
+          {{item.originalTask.date}}
+        </view>
+        <view class="arrow-icon">
+          <image src="/images/arrow-down.png" mode="aspectFit"></image>
+        </view>
+      </view>
+      <view class="new-tasks">
+        <view wx:for="{{item.newTasks}}" wx:key="index" wx:for-item="subItem" class="task-item">
+          拆分任务: {{subItem.name}} - {{subItem.date}}
+        </view>
+      </view>
+    </block>
+
+    <!-- 修改任务量 -->
+    <block wx:if="{{item.type === 'updateName'}}">
+      <view class="section-title">
+        <image class="section_icon" src="/images/update.png" ></image>
+        <view class="title">修改任务量</view>
+      </view>
+      <view class="original-task">
+        <view class="task-label">原任务</view>
+        <view class="task-content">
+          {{item.originalTask.name}}
+          {{item.originalTask.date}}
+        </view>
+        <view class="arrow-icon">
+          <image src="/images/arrow-down.png" mode="aspectFit"></image>
+        </view>
+      </view>
+      <view class="new-task">
+        <view class="task-item">
+          修改任务量: {{item.newName}}
+        </view>
+      </view>
+    </block>
+
+    <!-- 修改任务日期 -->
+    <block wx:if="{{item.type === 'updateDate'}}">
+      <view class="section-title">
+        <image class="section_icon" src="/images/date.png" ></image>
+        <view class="title">修改任务日期</view>
+      </view>
+      <view class="original-task">
+        <view class="task-label">原任务</view>
+        <view class="task-content">
+          {{item.originalTask.name}}
+          {{item.originalTask.date}}
+        </view>
+        <view class="arrow-icon">
+          <image src="/images/arrow-down.png" mode="aspectFit"></image>
+        </view>
+      </view>
+      <view class="new-task">
+        <view class="task-item">
+          修改任务日期: {{item.newDate}}
+        </view>
+      </view>
+    </block>
+
+    <!-- 分割线 -->
+    <view class="divider" wx:if="{{index !== tasks.length - 1}}"></view>
+  </block>
+</view>

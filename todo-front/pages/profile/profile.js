@@ -179,7 +179,7 @@ Page({
       
       const option = {
         title: {
-          text: '任务完成率',
+          text: '任务完成率(单位:%)',
           left: 'center',
           top: 10,
           textStyle: {

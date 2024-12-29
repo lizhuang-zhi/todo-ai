@@ -1,0 +1,69 @@
+.ai-parser {
+  padding: 20rpx;
+  background: #fff;
+  border-radius: 12rpx;
+}
+
+.section-title {
+  font-size: 24rpx;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.section_icon {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 8rpx;
+}
+
+.original-task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 22rpx;
+}
+
+.task-label {
+  color: #333;
+}
+
+.task-content {
+  background: #fff;
+  border-radius: 8rpx;
+}
+
+.arrow-icon {
+  text-align: center;
+  margin: 20rpx 0;
+}
+
+.arrow-icon image {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.new-tasks, .new-task {
+  border-radius: 8rpx;
+  font-size: 22rpx;
+}
+
+.task-item {
+  padding: 10rpx 24rpx;
+  background: #fff;
+  background-color: #eee;
+  border-radius: 8rpx;
+  margin-bottom: 16rpx;
+  border: 2rpx solid #eee;
+}
+
+.task-item:last-child {
+  margin-bottom: 0;
+}
+
+/* 分割线样式 */
+.divider {
+  height: 2rpx;
+  background: #eee;
+  margin: 32rpx 0;
+}

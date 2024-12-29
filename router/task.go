@@ -14,5 +14,6 @@ func InitTaskRouter(Router *gin.RouterGroup) {
 		router.POST("delete", WrapperHandler(api.DeleteTask))     // 删除任务
 		router.POST("finished", WrapperHandler(api.FinishedTask)) // 完成任务
 		router.GET("list", WrapperHandler(api.ListTask))          // 任务列表
+		router.GET("detail", WrapperHandler(api.GetTaskDetail))   // 根据任务id获取任务详情
 	}
 }
