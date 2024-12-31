@@ -11,8 +11,8 @@ import (
 
 func TestChatMessage(t *testing.T) {
 	common.Config = &config.Server{}
-	common.Config.Dify.ApiUrl = "http://dify.fpsops.com/v1"
-	common.Config.Dify.Workflow = []string{"对话Agent:app-QFo9nssgEuLDiL6sSK5hRWO2"}
+	common.Config.Dify.ApiUrl = "http://10.1.7.166/v1"
+	common.Config.Dify.Workflow = []string{"对话Agent:app-0K43SIwAVXhO30mwTFTsyut6"}
 
 	err := events.InitWorkflowCfg()
 	if err != nil {
@@ -30,12 +30,12 @@ func TestChatMessage(t *testing.T) {
 
 	// 构建历史对话
 	historyChatMessage := NewChatHistory()
-	historyChatMessage.AddMessage("user", "南极旅行计划")
-	historyChatMessage.AddMessage("agent", "好的，收到，那么您的计划是什么时候出发呢？")
-	historyChatMessage.AddMessage("user", "2025-01-01")
-	historyChatMessage.AddMessage("agent", "好的，收到，那么您的计划存在间隔吗？")
+	// historyChatMessage.AddMessage("user", "南极旅行计划")
+	// historyChatMessage.AddMessage("agent", "好的，收到，那么您的计划是什么时候出发呢？")
+	// historyChatMessage.AddMessage("user", "2025-01-01")
+	// historyChatMessage.AddMessage("agent", "好的，收到，那么您的计划存在间隔吗？")
 
-	data := ChatMessageDataRaw(historyChatMessage.GetHistory(), "间隔1天", "0e65261c-8195-4276-82b3-9d14c17c13f1")
+	data := ChatMessageDataRaw(historyChatMessage.GetHistory(), "没有其他补充", "7bf03a48-e7a9-4342-88a2-ccb9b6d17700")
 
 	res, err := ChatMessage(secret, data)
 	if err != nil {

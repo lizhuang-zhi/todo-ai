@@ -51,8 +51,8 @@ func (ch *ChatHistory) GetHistory() string {
 func ChatMessageDataRaw(historyChatMessage, queryCont, conversationID string) interface{} {
 	return map[string]interface{}{
 		"inputs": map[string]interface{}{
-			"history": historyChatMessage,
-			"message": historyChatMessage,
+			// "history": historyChatMessage,
+			// "message": historyChatMessage,
 		},
 		"query":           queryCont,
 		"response_mode":   "streaming", // SSE
