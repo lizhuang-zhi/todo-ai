@@ -4,7 +4,8 @@
     "pages/challenge/challenge",
     "pages/profile/profile",
     "pages/logs/logs",
-    "pages/plan/plan"
+    "pages/plan/plan",
+    "pages/data/data"
   ],
   "window": {
     "navigationBarTextStyle": "black",

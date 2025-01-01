@@ -1,5 +1,5 @@
 {
   "usingComponents": {},
   "navigationBarTitleText": "生成计划",
-  "navigationStyle": "custom"
+  "backgroundColor": "#f5f6fa"
 }

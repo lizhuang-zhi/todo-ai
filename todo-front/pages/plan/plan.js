@@ -155,20 +155,6 @@ Page({
     })
   },
 
-  // 点击返回
-  onBackClick() {
-    wx.showModal({
-      title: '是否保存?',
-      content: '保存后,可在个人页面查看',
-      success: (res) => {
-        if (res.confirm) {
-          // 确认退出
-          wx.navigateBack();
-        }
-      },
-    });
-  },
-
   /**
    * 生命周期函数--监听页面加载
    */

@@ -22,13 +22,6 @@ Page({
     lineYData: [],
   },
 
-  // 跳转数据页面
-  onTapMore() {
-    wx.navigateTo({
-      url: '/pages/data/data',
-    })
-  },
-
   async onLoad() {
     this.getUserInfo();
     await this.initData();

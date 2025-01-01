@@ -1,26 +1,8 @@
-.custom-navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 50px;
-  background-color: #ffffff;
-  padding: 0 10px;
-  border-bottom: 1px solid #e0e0e0;
-  margin-top: 80rpx;
-}
-.back_btn {
-  width: 40rpx;
-  height: 40rpx;
-}
-.top_title {
-  margin-right: 10px;
-}
-
 /* 容器 */
 .chat-container {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 50px - 80rpx - 30rpx);
+  height: calc(100vh - 30rpx);
   background-color: #f9f9f9;
 }
 

@@ -10,6 +10,25 @@
       <view class="user-level">
         <image class="level-icon" src="/images/level-icon.png" />
         <text>{{levelTitle}}</text>
+        <view class="more" bind:tap="onTapMore">更多</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 历史会话 -->
+  <view class="history-section">
+    <view class="history-title">会话记录</view>
+    <view class="history-container">
+      <view wx:for="{{7}}" class="conversation_box">
+        <view class="title_box">
+          <view class="left_icon">
+            <image class="im_icon" src="/images/im.png" />
+          </view>
+          <view class="right_tit">
+            <view class="im_title">新对话</view>
+            <view class="im_last_cont">我从水电费水电水电费水电费费说分手地方...</view>
+          </view>
+        </view>
       </view>
     </view>
   </view>
@@ -47,13 +66,5 @@
         <ec-canvas id="lineChart" canvas-id="line" />
       </view>
     </view>
-    
-    <!-- 词云展示 -->
-    <!-- <view class="word-cloud">
-      <view class="word-cloud-title">词云展示</view>
-      <view class="chart-container">
-        <ec-canvas id="wordCloudChart" canvas-id="wordCloudChart" ec="{{ ecWordCloud }}"></ec-canvas>
-      </view>
-    </view> -->
   </view>
 </view>
