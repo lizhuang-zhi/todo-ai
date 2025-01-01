@@ -12,7 +12,8 @@
       <!-- AI 消息 -->
       <view wx:if="{{item.sender === 'ai'}}" class="message-row">
         <image class="avatar" src="{{aiAvatar}}" />
-        <view class="message-bubble ai">{{item.content}}</view>
+        <view wx:if="{{!item.genPlan}}" class="message-bubble ai">{{item.content}}</view>
+        <im-plan-format wx:else aiPlanText="{{item.planCont}}" bind:confirm="onConfirmApply"></im-plan-format>
       </view>
       <!-- 用户消息 -->
       <view wx:if="{{item.sender === 'user'}}" class="message-row user">

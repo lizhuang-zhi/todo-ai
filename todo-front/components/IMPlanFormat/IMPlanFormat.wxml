@@ -1,0 +1,29 @@
+<view class="plan-card">
+  <!-- 标题栏 -->
+  <view class="header">
+    <view class="title-group">
+      <view class="title">计划:</view>
+      <view class="plan-name">{{parentTask.name}}</view>
+    </view>
+    <view class="date">{{parentTask.date}}</view>
+  </view>
+
+  <!-- 分割线 -->
+  <view class="divider"></view>
+
+  <!-- 子任务列表 -->
+  <view class="sub-tasks">
+    <view class="sub-title">子任务:</view>
+    <view class="task-list">
+      <view class="task-item" wx:for="{{sonTasks}}" wx:key="index">
+        <view class="task-content">{{item.name}} - {{item.date}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部按钮 -->
+  <view class="footer">
+    <button class="btn cancel" hover-class="btn-hover" bindtap="onCancel">撤销</button>
+    <button class="btn confirm" hover-class="btn-hover" bindtap="onConfirm">应用</button>
+  </view>
+</view>

@@ -29,13 +29,13 @@ func TestChatMessage(t *testing.T) {
 	t.Log("secret:", secret)
 
 	// 构建历史对话
-	historyChatMessage := NewChatHistory()
+	// historyChatMessage := NewChatHistory()
 	// historyChatMessage.AddMessage("user", "南极旅行计划")
 	// historyChatMessage.AddMessage("agent", "好的，收到，那么您的计划是什么时候出发呢？")
 	// historyChatMessage.AddMessage("user", "2025-01-01")
 	// historyChatMessage.AddMessage("agent", "好的，收到，那么您的计划存在间隔吗？")
 
-	data := ChatMessageDataRaw(historyChatMessage.GetHistory(), "没有其他补充", "7bf03a48-e7a9-4342-88a2-ccb9b6d17700")
+	data := ChatMessageDataRaw("", "没有其他补充", "7bf03a48-e7a9-4342-88a2-ccb9b6d17700")
 
 	res, err := ChatMessage(secret, data)
 	if err != nil {

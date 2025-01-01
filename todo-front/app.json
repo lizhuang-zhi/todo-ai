@@ -50,6 +50,7 @@
     "van-button": "@vant/weapp/button/index",
     "van-dialog": "@vant/weapp/dialog/index",
     "ec-canvas": "/components/ec-canvas/ec-canvas",
-    "ai-format": "/components/AiFormat/AiFormat"
+    "ai-format": "/components/AiFormat/AiFormat",
+    "im-plan-format": "/components/IMPlanFormat/IMPlanFormat"
   }
 }

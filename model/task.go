@@ -15,7 +15,7 @@ type Task struct {
 	Date         string  `json:"date" bson:"date"`                   // 日期(yyyy-MM-dd)
 	Year         int     `json:"year" bson:"year"`                   // 年份
 	Priority     int     `json:"priority" bson:"priority"`           // 优先级(0-无 1-低 2-中 3-高)
-	Type         int     `json:"type" bson:"type"`                   // 任务类型(0-单日任务 1-年度挑战)
+	Type         int     `json:"type" bson:"type"`                   // 任务类型(0-单日任务 1-年度挑战 2-计划)
 	ParentID     int64   `json:"parent_id" bson:"parent_id"`         // 父任务ID
 	Progress     float64 `json:"progress" bson:"progress"`           // 进度
 	AiSuggestion string  `json:"ai_suggestion" bson:"ai_suggestion"` // AI建议

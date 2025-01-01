@@ -3,56 +3,57 @@ package dify
 import (
 	"context"
 	"encoding/json"
-	"sync"
 	"time"
-	"todo-ai/common"
 	"todo-ai/core/shttp"
 )
 
-type ChatHistory struct {
-	Messages       []*Message
-	ConversationID string
-	Lock           sync.Mutex
-}
+// TODO: 待正式服更新dify版本(现在版本有Bug)
+const ApiUrl = "http://10.1.7.166/v1"
+const AgentSecret = "app-0K43SIwAVXhO30mwTFTsyut6"
 
-type Message struct {
-	Role    string `json:"role"`
-	Content string `json:"content"`
-}
+// type ChatHistory struct {
+// 	Messages       []*Message
+// 	ConversationID string
+// 	Lock           sync.Mutex
+// }
 
-func NewChatHistory() *ChatHistory {
-	return &ChatHistory{
-		Messages:       []*Message{},
-		ConversationID: "",
-	}
-}
+// type Message struct {
+// 	Role    string `json:"role"`
+// 	Content string `json:"content"`
+// }
 
-func (ch *ChatHistory) AddMessage(role, content string) {
-	ch.Lock.Lock()
-	defer ch.Lock.Unlock()
+// func NewChatHistory() *ChatHistory {
+// 	return &ChatHistory{
+// 		Messages:       []*Message{},
+// 		ConversationID: "",
+// 	}
+// }
 
-	ch.Messages = append(ch.Messages, &Message{
-		Role:    role,
-		Content: content,
-	})
-}
+// func (ch *ChatHistory) AddMessage(role, content string) {
+// 	ch.Lock.Lock()
+// 	defer ch.Lock.Unlock()
 
-func (ch *ChatHistory) GetHistory() string {
-	ch.Lock.Lock()
-	defer ch.Lock.Unlock()
-	historyChatMessage := ""
-	for _, msg := range ch.Messages {
-		historyChatMessage += msg.Role + ": " + msg.Content + "\n"
-	}
-	return historyChatMessage
-}
+// 	ch.Messages = append(ch.Messages, &Message{
+// 		Role:    role,
+// 		Content: content,
+// 	})
+// }
+
+// func (ch *ChatHistory) GetHistory() string {
+// 	ch.Lock.Lock()
+// 	defer ch.Lock.Unlock()
+// 	historyChatMessage := ""
+// 	for _, msg := range ch.Messages {
+// 		historyChatMessage += msg.Role + ": " + msg.Content + "\n"
+// 	}
+// 	return historyChatMessage
+// }
 
 // chat-message data raw
-func ChatMessageDataRaw(historyChatMessage, queryCont, conversationID string) interface{} {
+func ChatMessageDataRaw(history, queryCont, conversationID string) interface{} {
 	return map[string]interface{}{
 		"inputs": map[string]interface{}{
-			// "history": historyChatMessage,
-			// "message": historyChatMessage,
+			"history": history,
 		},
 		"query":           queryCont,
 		"response_mode":   "streaming", // SSE
@@ -62,9 +63,8 @@ func ChatMessageDataRaw(historyChatMessage, queryCont, conversationID string) in
 }
 
 // chat-message
-
 func ChatMessage(secret string, data interface{}) ([]byte, error) {
-	url := common.Config.Dify.ApiUrl + "/chat-messages"
+	url := ApiUrl + "/chat-messages"
 
 	bytes, err := json.Marshal(data)
 	if err != nil {

@@ -1,0 +1,158 @@
+.plan-card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 20rpx 20rpx;
+  margin: 10rpx 20rpx 10rpx 10rpx;
+  box-shadow: 0 2rpx 20rpx rgba(0,0,0,0.05);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+
+.title-group {
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  font-size: 26rpx;
+  font-weight: 500;
+  color: #333;
+  padding: 8rpx 20rpx;
+}
+
+.plan-name {
+  font-size: 24rpx;
+  font-weight: 500;
+  color: #333;
+  padding: 8rpx 30rpx;
+}
+
+.date {
+  font-size: 24rpx;
+  color: #333;
+  padding: 8rpx 20rpx;
+}
+
+.divider {
+  height: 2rpx;
+  background: #f0f0f0;
+  margin: 10rpx 0;
+}
+
+.sub-tasks {
+  margin-top: 20rpx;
+}
+
+.sub-title {
+  font-size: 26rpx;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 20rpx;
+  display: inline-block;
+  padding: 8rpx 20rpx;
+  border-radius: 12rpx;
+}
+
+.task-content {
+  font-size: 24rpx;
+  color: #333;
+  flex: 1;
+  text-align: center;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  gap: 30rpx;
+  margin-top: 40rpx;
+}
+
+.btn {
+  min-width: 200rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+  border: none;
+}
+
+.cancel {
+  background: #f5f5f5;
+  color: #666;
+  border: 2rpx solid #000;
+}
+
+.confirm {
+  background: #000;
+  color: #fff;
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+.task-list {
+  margin: 0 20rpx;
+}
+
+.task-item {
+  background: #fff;
+  border: 2rpx solid #333;
+  border-radius: 16rpx;
+  padding: 5rpx 30rpx;
+  margin-bottom: 24rpx;
+  font-size: 28rpx;
+  box-shadow: 4rpx 4rpx 0 #333;
+  transition: all 0.2s ease;
+}
+
+.task-item:active {
+  transform: translate(4rpx, 4rpx);
+  box-shadow: 0 0 0 #333;
+}
+
+.btn {
+  position: relative;
+  min-width: 200rpx;
+  height: 58rpx;
+  line-height: 58rpx;
+  border: 2rpx solid #333;
+  border-radius: 44rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+  box-shadow: 4rpx 4rpx 0 #333;
+  transition: all 0.2s ease;
+}
+
+.btn:active {
+  transform: translate(4rpx, 4rpx);
+  box-shadow: 0 0 0 #333;
+}
+
+.cancel {
+  background: #fff;
+  color: #333;
+}
+
+.confirm {
+  /* background: #333; */
+  background:rgb(252, 200, 36);
+  color: #fff;
+}
+
+.task-content {
+  text-align: left;
+  line-height: 1.6;
+}
+
+/* 按钮hover效果 */
+.btn-hover {
+  opacity: 0.8;
+}

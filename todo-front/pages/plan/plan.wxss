@@ -41,8 +41,8 @@
 }
 
 .avatar {
-  width: 40px;
-  height: 40px;
+  width: 70rpx;
+  height: 70rpx;
   border-radius: 50%;
   margin: 0 10px;
 }
@@ -51,7 +51,7 @@
   max-width: 70%;
   padding: 10px 15px;
   border-radius: 10px;
-  font-size: 16px;
+  font-size: 28rpx;
   line-height: 1.4;
   word-break: break-word;
   position: relative;
@@ -67,6 +67,7 @@
 /* 用户消息样式 */
 .message-bubble.user {
   background-color: #007aff;
+  background-color: #ff9900;
   color: #fff;
   text-align: right;
 }
@@ -74,7 +75,7 @@
 /* 输入框 */
 .input-container {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   padding: 10px;
   background-color: #ffffff;
   border-top: 1px solid #e0e0e0;
@@ -86,13 +87,15 @@
   border: 1px solid #e0e0e0;
   border-radius: 5px;
   margin-right: 10px;
-  height: 40rpx;
+  height: 100rpx;
+  font-size: 28rpx;
 }
 
 .send-button {
   background-color: #007aff;
+  background-color: #ff4800;
   color: white;
   border: none;
   border-radius: 5px;
-  font-size: 16px;
+  font-size: 28rpx;
 }
