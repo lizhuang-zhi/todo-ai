@@ -70,3 +70,36 @@ func DayApplyAiPlan(ctx *gin.Context) (interface{}, error) {
 
 	return "ok", nil
 }
+
+type ChatHistoryMessageRequest struct {
+	ConversationID string `json:"conversation_id" form:"conversation_id"` // 会话ID
+	FirstID        string `json:"first_id" form:"first_id"`               // 当前页的第一条聊天记录ID
+	Limit          int    `json:"limit" form:"limit"`                     // 每页显示的聊天记录数
+}
+
+// ChatHistoryMessage 获取聊天历史消息
+func ChatHistoryMessage(ctx *gin.Context) (interface{}, error) {
+	var request ChatHistoryMessageRequest
+	if err := ctx.Bind(&request); err != nil {
+		logger.Errorf("ChatHistoryMessage BindJSON error:%s", err)
+		return nil, err
+	}
+
+	if request.ConversationID == "" {
+		return nil, errors.New("conversation_id is empty")
+	}
+
+	if request.Limit == 0 {
+		return nil, errors.New("limit is empty")
+	}
+
+	// 获取聊天历史消息
+	// TODO: 替换secret
+	resp, err := dify.GetHistoryMessages(dify.AgentSecret, request.ConversationID, request.FirstID, request.Limit)
+	if err != nil {
+		logger.Errorf("[GetHistoryMessages] dify GetHistoryMessages with err %v, conversation_id[%s], first_id[%s], limit[%d]", err, request.ConversationID, request.FirstID, request.Limit)
+		return nil, err
+	}
+
+	return resp, nil
+}

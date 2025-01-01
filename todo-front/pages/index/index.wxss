@@ -234,3 +234,16 @@ page {
 .date_ai_suggest_text {
   font-size: 26rpx;
 }
+
+.custom-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20rpx;
+}
+
+.title-icon {
+  width: 30rpx;
+  height: 30rpx;
+  margin-left: 10rpx;
+}

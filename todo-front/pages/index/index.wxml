@@ -112,6 +112,7 @@
 <!-- AI每日规划合理化建议展示框 -->
 <van-dialog
   use-slot
+  use-title-slot
   title="AI 规划合理化建议"
   width="85%"
   show="{{ showDateAiSuggestPop }}"
@@ -120,6 +121,11 @@
   cancelButtonText="取消"
   bind:confirm="applyAiSuggest"
 >
+  <view slot="title" class="custom-title">
+    <text>AI 规划合理化建议</text>
+    <image src="../../images/question.png" class="title-icon" bind:tap="watchSuggestDetail"></image>
+  </view>
+
   <view class="date_ai_suggest_pop">
     <ai-format aiFormatText='{{dateAiSuggestCont}}' dateTodoList='{{todos}}'></ai-format>
   </view>

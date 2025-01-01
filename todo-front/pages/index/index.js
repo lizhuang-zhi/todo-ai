@@ -28,6 +28,31 @@ Page({
     showDateAiSuggestPop: false,    // 是否展示Ai每日合理化建议内容框
   },
 
+  // 查看规划建议说明
+  watchSuggestDetail() {
+    if (this.data.dateAiSuggestCont == "") {
+      return 
+    }
+
+    let showCont = ""
+    let suggests = this.data.dateAiSuggestCont.split("```")
+    if (suggests.length > 2) {
+      for (let index = 0; index < suggests.length; index++) {
+        if (index == 0 || index == 2) {
+          showCont += suggests[index]
+        }
+      }
+    }
+
+    wx.showModal({
+      title: '建议说明',
+      content: showCont,
+      showCancel: false,
+      success: (res) => {
+      },
+    });
+  },
+
   // 应用Ai规划合理化建议
   applyAiSuggest() {
     if (this.data.dateAiSuggestCont == "") {
@@ -529,7 +554,7 @@ Page({
       todos
     })
   },
-
+  
   /**
    * 生命周期函数--监听页面加载
    */
