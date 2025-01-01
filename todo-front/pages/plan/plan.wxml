@@ -1,9 +1,23 @@
+<!-- 顶部返回 -->
+<view class="custom-navbar">
+  <image class="back_btn" bindtap="onBackClick" src="../../images/back.png" />
+  <view class="top_title">AI创建计划</view>
+  <view class="right_text"></view>
+</view>
+
 <view class="chat-container">
   <!-- 消息显示区域 -->
   <scroll-view scroll-y class="messages">
     <block wx:for="{{messages}}" wx:key="id">
-      <view class="message {{item.sender}}">
-        <text>{{item.content}}</text>
+      <!-- AI 消息 -->
+      <view wx:if="{{item.sender === 'ai'}}" class="message-row">
+        <image class="avatar" src="{{aiAvatar}}" />
+        <view class="message-bubble ai">{{item.content}}</view>
+      </view>
+      <!-- 用户消息 -->
+      <view wx:if="{{item.sender === 'user'}}" class="message-row user">
+        <view class="message-bubble user">{{item.content}}</view>
+        <image class="avatar" src="{{userAvatar}}" />
       </view>
     </block>
   </scroll-view>

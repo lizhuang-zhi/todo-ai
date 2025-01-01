@@ -1,4 +1,5 @@
 {
   "usingComponents": {},
-  "navigationBarTitleText": "生成计划"
+  "navigationBarTitleText": "生成计划",
+  "navigationStyle": "custom"
 }

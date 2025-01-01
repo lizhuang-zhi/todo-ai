@@ -5,10 +5,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    messages: [], // 存储消息
-    inputValue: '', // 用户输入的内容
+    messages: [], // 消息数组
+    inputValue: '', // 输入框内容
+    aiAvatar: '../../images/ai_suggest.png', // AI 头像（需替换为真实路径）
+    userAvatar: '../../images/default-avatar.png', // 用户头像（需替换为真实路径）
   },
-
   onInput(e) {
     this.setData({ inputValue: e.detail.value });
   },
@@ -23,7 +24,6 @@ Page({
     // 模拟调用 AI 接口
     this.getAIResponse(inputValue);
   },
-
   getAIResponse(userMessage) {
     // 模拟 AI 回复
     wx.request({
@@ -40,6 +40,20 @@ Page({
         const { messages } = this.data;
         messages.push({ id: Date.now(), content: 'AI 回复失败，请重试。', sender: 'ai' });
         this.setData({ messages });
+      },
+    });
+  },
+
+  // 点击返回
+  onBackClick() {
+    wx.showModal({
+      title: '确认退出?',
+      content: '历史对话可在个人页面查看',
+      success: (res) => {
+        if (res.confirm) {
+          // 确认退出
+          wx.navigateBack();
+        }
       },
     });
   },
@@ -76,23 +90,6 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-    if (!this.data.showConfirm) {
-      // 阻止页面卸载，显示弹框
-      this.setData({ showConfirm: true });
-      wx.showModal({
-        title: '确认退出',
-        content: '您确定要离开此页面吗？',
-        success: (res) => {
-          if (res.confirm) {
-            // 用户确认退出，继续返回
-            wx.navigateBack();
-          } else {
-            // 用户取消退出，什么都不做
-            this.setData({ showConfirm: false });
-          }
-        },
-      });
-    }
   },
 
   /**

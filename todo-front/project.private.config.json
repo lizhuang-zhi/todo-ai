@@ -9,6 +9,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "聊天界面",
+          "pathName": "pages/plan/plan",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/square/square",
           "pathName": "pages/square/square",
           "query": "",
