@@ -32,39 +32,4 @@
       </view>
     </view>
   </view>
-
-  <!-- 数据统计区 -->
-  <view class="stats-container">
-    <view class="stats-item">
-      <view class="stats-icon">
-        <image src="/images/task-icon.png" />
-      </view>
-      <view class="stats-content">
-        <view class="stats-num">{{taskCount}}</view>
-        <view class="stats-label">累计完成任务</view>
-      </view>
-    </view>
-    <view class="stats-item">
-      <view class="stats-icon history_finish_icon">
-        <image src="/images/rate-icon.png" />
-      </view>
-      <view class="stats-content">
-        <view class="stats-num">{{completionRate}}%</view>
-        <view class="stats-label">历史完成率</view>
-      </view>
-    </view>
-  </view>
-
-  <!-- 报告区域 -->
-  <view class="report-section">
-    <view class="section-title">报告</view>
-    <view class="charts-container">
-      <view class="chart-item">
-        <ec-canvas id="barChart" canvas-id="bar" />
-      </view>
-      <view class="chart-item">
-        <ec-canvas id="lineChart" canvas-id="line" />
-      </view>
-    </view>
-  </view>
 </view>
