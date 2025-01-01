@@ -58,7 +58,7 @@ Component({
     // 跳转发布页面
     toRelease() {
       wx.navigateTo({
-        url: '/pages/logs/logs',
+        url: '/pages/plan/plan',
       })
     }
   }

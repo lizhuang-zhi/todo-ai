@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/challenge/challenge",
     "pages/profile/profile",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/plan/plan"
   ],
   "window": {
     "navigationBarTextStyle": "black",
