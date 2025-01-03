@@ -71,17 +71,17 @@ func DayApplyAiPlan(ctx *gin.Context) (interface{}, error) {
 	return "ok", nil
 }
 
-type ChatHistoryMessageRequest struct {
+type ChatHistoryMessagesRequest struct {
 	ConversationID string `json:"conversation_id" form:"conversation_id"` // 会话ID
 	FirstID        string `json:"first_id" form:"first_id"`               // 当前页的第一条聊天记录ID
 	Limit          int    `json:"limit" form:"limit"`                     // 每页显示的聊天记录数
 }
 
-// ChatHistoryMessage 获取聊天历史消息
-func ChatHistoryMessage(ctx *gin.Context) (interface{}, error) {
-	var request ChatHistoryMessageRequest
+// ChatHistoryMessages 获取聊天历史消息
+func ChatHistoryMessages(ctx *gin.Context) (interface{}, error) {
+	var request ChatHistoryMessagesRequest
 	if err := ctx.Bind(&request); err != nil {
-		logger.Errorf("ChatHistoryMessage BindJSON error:%s", err)
+		logger.Errorf("ChatHistoryMessages BindJSON error:%s", err)
 		return nil, err
 	}
 
@@ -97,7 +97,36 @@ func ChatHistoryMessage(ctx *gin.Context) (interface{}, error) {
 	// TODO: 替换secret
 	resp, err := dify.GetHistoryMessages(dify.AgentSecret, request.ConversationID, request.FirstID, request.Limit)
 	if err != nil {
-		logger.Errorf("[GetHistoryMessages] dify GetHistoryMessages with err %v, conversation_id[%s], first_id[%s], limit[%d]", err, request.ConversationID, request.FirstID, request.Limit)
+		logger.Errorf("[ChatHistoryMessages] dify GetHistoryMessages with err %v, conversation_id[%s], first_id[%s], limit[%d]", err, request.ConversationID, request.FirstID, request.Limit)
+		return nil, err
+	}
+
+	return resp, nil
+}
+
+type ChatHistoryConversationsRequest struct {
+	Pinned bool   `json:"pinned" form:"pinned"`   // 只返回置顶 true，只返回非置顶 false
+	LastID string `json:"last_id" form:"last_id"` // 当前页最后面一条记录的 ID，默认 null
+	Limit  int    `json:"limit" form:"limit"`     // 一次请求返回多少条记录
+}
+
+// ChatHistoryConversations 获取会话列表
+func ChatHistoryConversations(ctx *gin.Context) (interface{}, error) {
+	var request ChatHistoryConversationsRequest
+	if err := ctx.Bind(&request); err != nil {
+		logger.Errorf("ChatHistoryConversations BindJSON error:%s", err)
+		return nil, err
+	}
+
+	if request.Limit == 0 {
+		return nil, errors.New("limit is empty")
+	}
+
+	// 获取聊天历史消息
+	// TODO: 替换secret
+	resp, err := dify.GetHistoryConversations(dify.AgentSecret, request.Pinned, request.LastID, request.Limit)
+	if err != nil {
+		logger.Errorf("[ChatHistoryConversations] dify GetHistoryConversations with err %v, last_id[%s], pinned[%v], limit[%d]", err, request.LastID, request.Pinned, request.Limit)
 		return nil, err
 	}
 

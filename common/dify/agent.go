@@ -13,7 +13,7 @@ const User = "leo"
 
 // TODO: 待正式服更新dify版本(现在版本有Bug)
 const ApiUrl = "http://10.1.7.166/v1"
-const AgentSecret = "app-0K43SIwAVXhO30mwTFTsyut6"
+const AgentSecret = "app-0K43SIwAVXhO30mwTFTsyut6" // 内网secret
 
 // type ChatHistory struct {
 // 	Messages       []*Message
@@ -171,6 +171,47 @@ func GetHistoryMessages(secret string, conversationID string, firstID string, li
 	resp := &HistoryMessageResp{}
 	if err := json.Unmarshal(body, resp); err != nil {
 		logger.Errorf("[GetHistoryMessages] json unmarshal with error: %v, conversation_id[%s], first_id[%s], limit[%d]", err, conversationID, firstID, limit)
+		return nil, err
+	}
+
+	return resp, nil
+}
+
+type HistoryConversationsResp struct {
+	Limit   int  `json:"limit"`
+	HasMore bool `json:"has_more"`
+	Data    []struct {
+		ID        string      `json:"id"`
+		Name      string      `json:"name"`
+		Status    string      `json:"status"`
+		Inputs    interface{} `json:"inputs"`
+		CreatedAt int64       `json:"created_at"`
+	} `json:"data"`
+}
+
+// conversations 获取会话列表
+func GetHistoryConversations(secret string, pinned bool, lastID string, limit int) (*HistoryConversationsResp, error) {
+	// bool转字符串
+	pinnedStr := ""
+	if pinned {
+		pinnedStr = "true"
+	} else {
+		pinnedStr = "false"
+	}
+
+	// TODO: 这里user写死了, 为leo
+	url := ApiUrl + "/conversations?user=" + User + "&last_id=" + lastID + "&pinned=" + pinnedStr + "&limit=" + strconv.Itoa(limit)
+
+	body, err := shttp.Get(context.Background(), url,
+		shttp.WithHeader("Authorization", "Bearer "+secret), shttp.WithHTTPTimeout(3*time.Minute)).ReadAll()
+	if err != nil {
+		logger.Errorf("[GetHistoryConversations] get with error: %v, last_id[%s], pinned[%s], limit[%d]", err, lastID, pinnedStr, limit)
+		return nil, err
+	}
+
+	resp := &HistoryConversationsResp{}
+	if err := json.Unmarshal(body, resp); err != nil {
+		logger.Errorf("[GetHistoryConversations] json unmarshal with error: %v, last_id[%s], pinned[%s], limit[%d]", err, lastID, pinnedStr, limit)
 		return nil, err
 	}
 
