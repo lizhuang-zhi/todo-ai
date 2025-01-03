@@ -20,14 +20,15 @@
     <view class="history-title">会话记录</view>
     <view class="history-container">
       <view wx:for="{{conversations}}" wx:key="index" class="conversation_box">
-        <view class="title_box">
+        <view class="title_box" bind:tap="onTapConversation" data-index="{{index}}" data-id="{{item.id}}">
           <view class="left_icon">
             <image class="im_icon" src="/images/im.png" />
           </view>
           <view class="right_tit">
-            <view class="im_title">{{item.name}}</view>
-            <!-- TODO：通过AI生成分享页的计划模板，供其他用户一键复制 -->
-            <view class="im_title" wx:if="{{item.canShare}}">分享</view>
+            <view class="im_top_box">
+              <view class="im_title">{{item.name}}</view>
+              <view class="im_share" wx:if="{{item.canShare}}" bind:tap="onTapShare" data-index="{{index}}" data-id="{{item.id}}">分享</view>
+            </view>
             <view class="im_last_cont">{{item.lastMsg}}</view>
           </view>
         </view>

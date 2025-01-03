@@ -48,7 +48,7 @@
 }
 
 .more {
-  margin-left: 55%;
+  margin-left: 45%;
 }
 
 /* 历史会话 */
@@ -92,6 +92,10 @@
   justify-content: center;
 }
 
+.right_tit {
+  width: 80%;
+}
+
 .im_icon {
   width: 72rpx;
   height: 72rpx;
@@ -99,10 +103,31 @@
   margin-left: 20rpx;
 }
 
+.im_top_box {
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .im_title {
   font-size: 30rpx;
   font-weight: bold;
   margin-bottom: 5rpx;
+}
+
+.im_share {
+  background: linear-gradient(90deg, #ff7e5f, #feb47b);
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8rpx;
+  padding: 3rpx 16rpx;
+  cursor: pointer;
+  box-shadow: 0 4rpx 10rpx rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  font-size: 22rpx;
+  position: relative;
 }
 
 .im_last_cont {

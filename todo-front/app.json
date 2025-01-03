@@ -5,7 +5,8 @@
     "pages/profile/profile",
     "pages/logs/logs",
     "pages/plan/plan",
-    "pages/data/data"
+    "pages/data/data",
+    "pages/share/share"
   ],
   "window": {
     "navigationBarTextStyle": "black",

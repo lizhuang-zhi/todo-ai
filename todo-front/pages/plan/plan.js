@@ -155,11 +155,72 @@ Page({
     })
   },
 
+  // 加载历史消息
+  async loadHistoryMessages(conversation_id) {
+    let converDetail = await this.getConversationDetail(conversation_id);
+
+    let {messages} = this.data;
+    for(let item of converDetail.data) {
+      messages.push({ id: Date.now(), content: item.query, sender: 'user' });
+      messages.push({ id: Date.now(), content: item.answer, sender: 'ai' });
+    }
+
+    this.setData({
+      messages: this.data.messages.map((msg) => {
+        if (msg.content.includes("```")) {
+          // 提取计划内容(通过```xxx```包裹)
+          let contArr = msg.content.split("```")
+          let planCont = ""
+          if (contArr.length > 2) {
+            planCont = contArr[1]
+          } else {
+            return { id: msg.id, content: msg.content, sender: msg.sender } 
+          }
+          return { id: msg.id, content: msg.content, sender: msg.sender, genPlan: true, planCont: planCont } 
+        } 
+        return { id: msg.id, content: msg.content, sender: msg.sender  } 
+      }),
+    });
+  },  
+
+  // 同步获取会话详情
+  async getConversationDetail(conversationId) {
+    return new Promise((resolve, reject) => {
+      wx.request({
+        url: api.ApiHost + '/im_plan/messages/',
+        method: 'get',
+        data: {
+          conversation_id: conversationId,
+          first_id: "",
+          limit: 20,   // TODO:暂时写死，不分页
+        },
+        header: {
+          'content-type': 'application/json',
+          'Authorization': 'Bearer'+ api.AuthKey // 如果需要token
+        },
+        success: (res) => {
+          if (!res ||!res.data) {
+            return reject('获取会话详情失败')
+          }
+          resolve(res.data)
+        },
+        fail: (err) => {
+          reject('获取会话详情失败')
+        },
+      })
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
 
+    // 获取会话id参数(从其他页面跳转过来)
+    if (options.id) {
+      this.setData({ conversationID: options.id });
+      this.loadHistoryMessages(options.id);
+    }
   },
 
   /**
@@ -173,7 +234,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
   },
 
   /**

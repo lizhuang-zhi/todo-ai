@@ -3,6 +3,8 @@ let utils = require('../../utils/utils');
 
 Page({
   data: {
+    levelTitle: "Lv.1初出茅庐",
+
     conversations: [],  // 会话数据
   },
 
@@ -15,7 +17,7 @@ Page({
 
   async onLoad() {
     this.getUserInfo();
-    this.getInitData();  // 获取会话数据
+    this.getInitData();  // 获取数据
   },
 
   getUserInfo() {
@@ -30,8 +32,18 @@ Page({
     });
   },
 
-  // 获取会话数据
-  async getInitData() {
+  // 获取数据
+  getInitData() {
+    this.getConversationsData();  // 获取会话数据
+    this.getLevelData();  // 获取等级数据
+  },
+
+  // 获取数据
+  async getConversationsData() {
+    wx.showLoading({
+      title: '加载中...',
+    });
+
     // TODO: 不处理分页，暂时仅加载20条数据
     // 同步获取会话列表
     let cvstResp = await this.getConversations();
@@ -57,6 +69,8 @@ Page({
     this.setData({
       conversations: result,
     })
+
+    wx.hideLoading();
   },
 
   // 同步获取会话列表
@@ -126,7 +140,7 @@ Page({
 
     // 获取最后一条消息
     let lastConversation = messages[messages.length - 1];
-    let lastMsg = utils.getShortStr(lastConversation, 30);
+    let lastMsg = utils.getShortStr(lastConversation?.answer, 18);
     
     let canShare = false;
     for(let item of messages) {
@@ -142,6 +156,69 @@ Page({
     }
   },
 
+  // 获取等级数据
+  getLevelData() {
+    wx.request({
+      url: api.ApiHost + '/profile/data',
+      method: 'get',
+      data: {
+        "user_id": 1, 
+      },
+      header: {
+        'content-type': 'application/json',
+        'Authorization': 'Bearer ' + api.AuthKey // 如果需要token
+      },
+      success: (res) => {
+        if (!res || !res.data) {
+          return 
+        }
+
+        this.setData({
+          levelTitle: this.initLevelTitle(res.data.total_task_len),
+        })
+      },
+      fail: (err) => {
+        wx.showToast({
+          title: '网络错误',
+          icon: 'none'
+        })
+      },
+      complete: () => {
+      }
+    })
+  },
+
+  // 等级
+  initLevelTitle(total_task_len) {
+    if (total_task_len >= 1000) {
+      return "Lv.4 炉火纯青"
+    }
+    if (total_task_len >= 100) {
+      return "Lv.3 独当一面"
+    }
+    if (total_task_len >= 10) {
+      return "Lv.2 崭露头角"
+    }
+    if (total_task_len >= 0) {
+      return "Lv.1 初出茅庐"
+    }
+  },
+
+  // 跳转会话页面
+  onTapConversation(event) {
+    let conversationId = event.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '/pages/plan/plan?id=' + conversationId,
+    })
+  },
+
+  // 跳转分享页面
+  onTapShare(event) {
+    let conversationId = event.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '/pages/share/share?id=' + conversationId,
+    })
+  },
 
   // 页面相关事件处理函数
   onPullDownRefresh() {

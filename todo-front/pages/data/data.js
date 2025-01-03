@@ -8,7 +8,6 @@ Page({
     userInfo: {},
     taskCount: 0,
     completionRate: 0,
-    levelTitle: "Lv.1初出茅庐",
     barChart: null,
     lineChart: null,
     // ecWordCloud: {
@@ -61,7 +60,6 @@ Page({
         this.setData({
           taskCount: res.data.total_task_len,
           completionRate: (res.data.task_finished_rate * 100).toFixed(1),
-          levelTitle: this.initLevelTitle(res.data.total_task_len),
           barXData: res.data.bar_chart?.x_axis,
           barYData: res.data.bar_chart?.y_axis,
           lineXData: res.data.line_chart?.x_axis,
@@ -77,22 +75,6 @@ Page({
       complete: () => {
       }
     })
-  },
-
-  // 等级
-  initLevelTitle(total_task_len) {
-    if (total_task_len >= 1000) {
-      return "Lv.4 炉火纯青"
-    }
-    if (total_task_len >= 100) {
-      return "Lv.3 独当一面"
-    }
-    if (total_task_len >= 10) {
-      return "Lv.2 崭露头角"
-    }
-    if (total_task_len >= 0) {
-      return "Lv.1 初出茅庐"
-    }
   },
 
   async initCharts() {
