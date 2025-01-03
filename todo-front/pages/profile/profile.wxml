@@ -17,18 +17,18 @@
 
   <!-- 历史会话 -->
   <view class="history-section">
-    <view class="history-title">会话记录</view>
+    <view class="history-title">会话记录</view>
     <view class="history-container">
-      <view wx:for="{{7}}" class="conversation_box">
+      <view wx:for="{{conversations}}" wx:key="index" class="conversation_box">
         <view class="title_box">
           <view class="left_icon">
             <image class="im_icon" src="/images/im.png" />
           </view>
           <view class="right_tit">
-            <view class="im_title">新对话</view>
+            <view class="im_title">{{item.name}}</view>
             <!-- TODO：通过AI生成分享页的计划模板，供其他用户一键复制 -->
-            <view class="im_title">分享</view>
-            <view class="im_last_cont">我从水电费水电水电费水电费费说分手地方...</view>
+            <view class="im_title" wx:if="{{item.canShare}}">分享</view>
+            <view class="im_last_cont">{{item.lastMsg}}</view>
           </view>
         </view>
       </view>

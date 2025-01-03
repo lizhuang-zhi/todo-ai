@@ -24,7 +24,13 @@ const formatDate = (date) => {
   return `${year}-${month}-${day}`;
 }
 
+// 获取字符串的前n个字符，超过部分用...代替
+const getShortStr = (str, n) => {
+  return str.length > n ? str.slice(0, n) + '...' : str;
+}
+
 module.exports = {
   formatTime,
   formatDate,
+  getShortStr,
 }
