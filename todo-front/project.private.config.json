@@ -9,6 +9,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "分享",
+          "pathName": "pages/share/share",
+          "query": "id=1b3a6793-a69b-4180-86d9-016965c1eeb3",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "我的",
           "pathName": "pages/profile/profile",
           "query": "",

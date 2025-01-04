@@ -1,2 +1,65 @@
-<!--pages/share/share.wxml-->
-<text>pages/share/share.wxml</text>
+<view class="share-container">
+  <!-- 顶部用户信息 -->
+  <view class="user-info">
+    <image class="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
+    <view class="name-wrap">
+      <text class="name">{{userInfo.nickName}}</text>
+      <text class="desc">邀请你一起使用智行Todo</text>
+    </view>
+  </view>
+
+  <!-- 邀请文案 -->
+  <view class="invite-text">
+    快来和我一起使用智行Todo,效率直线提升!
+  </view>
+
+  <!-- 计划卡片 -->
+  <view class="plan-card">
+    <view class="plan-header">
+      <text class="plan-title">计划:</text>
+      <text class="plan-name">成都旅行计划</text>
+      <text class="plan-date">2025-01-20</text>
+    </view>
+    
+    <view class="plan-content">
+      <text class="sub-title">子任务:</text>
+      <view class="task-list">
+        <view class="task-item">春熙路 @大型购物中心 - 2025-01-24</view>
+        <view class="task-item">太古里 @野生摄影师 - 2023-01-24</view>
+        <view class="task-item">望平街 @晚上霓虹灯 - 2023-01-24</view>
+        <view class="task-item">武侯祠 @三国文化胜地 - 2023-01-25</view>
+        <view class="task-item">锦里 @古色古香好出片 - 2023-01-25</view>
+        <view class="task-item">熊猫基地 @拍可爱大熊猫 - 2023-01-26</view>
+      </view>
+    </view>
+
+    <button class="join-btn" bindtap="onJoinPlan">{{buttonText}}</button>
+  </view>
+
+  <!-- 产品介绍 -->
+  <view class="intro-card">
+    <view class="intro-title">智行Todo帮你规划日程</view>
+    <view class="intro-item">
+      <text class="num">01</text>
+      <view class="content">
+        <view class="title">总觉得日程安排不合理？交给智行Todo：</view>
+        <view class="desc">• 日历视图,所有安排一目了然</view>
+        <view class="desc">• AI规划日程,合理拆分任务不再慌乱</view>
+      </view>
+    </view>
+    <view class="intro-item">
+        <text class="num">02</text>
+        <view class="content">
+            <view class="title">不想制定计划？交给智行Todo：</view>
+            <view class="desc">• AI对话生成计划,一键应用到日程</view>
+        </view>
+    </view>
+    <view class="intro-item">
+        <text class="num">03</text>
+        <view class="content">
+            <view class="title">任务想要更好的建议？交给智行Todo：</view>
+            <view class="desc">• 针对各类任务, AI给出合理建议</view>
+        </view>
+    </view>
+  </view>
+</view>

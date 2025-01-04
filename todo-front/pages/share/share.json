@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "navigationBarTitleText": "分享",
+  "navigationBarBackgroundColor": "#ff9345",
+  "navigationBarTextStyle": "white",
+  "backgroundColor": "#ff9345"
 }
