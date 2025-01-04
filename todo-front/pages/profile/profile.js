@@ -17,7 +17,6 @@ Page({
 
   async onLoad() {
     this.getUserInfo();
-    this.getInitData();  // 获取数据
   },
 
   getUserInfo() {
@@ -227,6 +226,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.getInitData();  // 获取数据
+
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {
       this.getTabBar().setData({

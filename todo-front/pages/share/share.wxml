@@ -24,12 +24,12 @@
     <view class="plan-content">
       <text class="sub-title">子任务:</text>
       <view class="task-list">
-        <view class="task-item">春熙路 @大型购物中心 - 2025-01-24</view>
-        <view class="task-item">太古里 @野生摄影师 - 2023-01-24</view>
-        <view class="task-item">望平街 @晚上霓虹灯 - 2023-01-24</view>
-        <view class="task-item">武侯祠 @三国文化胜地 - 2023-01-25</view>
-        <view class="task-item">锦里 @古色古香好出片 - 2023-01-25</view>
-        <view class="task-item">熊猫基地 @拍可爱大熊猫 - 2023-01-26</view>
+        <view class="task-item">春熙路(大型购物中心) - 2025-01-24</view>
+        <view class="task-item">太古里(野生摄影师) - 2023-01-24</view>
+        <view class="task-item">望平街(晚上霓虹灯) - 2023-01-24</view>
+        <view class="task-item">武侯祠(三国文化胜地) - 2023-01-25</view>
+        <view class="task-item">锦里(古色古香好出片) - 2023-01-25</view>
+        <view class="task-item">熊猫基地(拍可爱大熊猫) - 2023-01-26</view>
       </view>
     </view>
 
