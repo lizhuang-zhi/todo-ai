@@ -1,9 +1,7 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/challenge/challenge",
     "pages/profile/profile",
-    "pages/logs/logs",
     "pages/plan/plan",
     "pages/data/data",
     "pages/share/share"
@@ -20,12 +18,6 @@
     "borderStyle": "black",
     "backgroundColor": "#ffffff",
     "list": [
-      {
-        "pagePath": "pages/challenge/challenge",
-        "iconPath": "images/challenge.png",
-        "selectedIconPath": "images/challenge-select.png",
-        "text": "挑战"
-      },
       {
         "pagePath": "pages/index/index",
         "iconPath": "images/todo.png",
