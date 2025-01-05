@@ -121,7 +121,7 @@ func getDateAISuggestion(task *model.Task) {
 			return
 		}
 
-		dateAiSuggest, err := DoDifyWorkflowDateAiSuggest(secret, todayTasksStr, historyStr, holidayStr)
+		dateAiSuggest, err := DoDifyWorkflowDateAiSuggest(secret, todayTasksStr, historyStr, holidayStr, "3小时", "4小时")
 		if err != nil {
 			logger.Errorf("DoDifyWorkflow error:%s", err)
 			return
@@ -140,12 +140,14 @@ func getDateAISuggestion(task *model.Task) {
 	}(task)
 }
 
-func DoDifyWorkflowDateAiSuggest(secret string, todayTasksStr, historyStr, holidayStr interface{}) (string, error) {
+func DoDifyWorkflowDateAiSuggest(secret string, todayTasksStr, historyStr, holidayStr, workDayTotalTime, weekendTotalTime interface{}) (string, error) {
 	data := map[string]interface{}{
 		"inputs": map[string]interface{}{
-			"todayTasks": todayTasksStr,
-			"history":    historyStr,
-			"day":        holidayStr,
+			"todayTasks":       todayTasksStr,    // 今日代办任务
+			"history":          historyStr,       // 历史完成任务情况
+			"day":              holidayStr,       // 今天的日期、节日等情况
+			"workDayTotalTime": workDayTotalTime, // 工作日可规划总时长
+			"weekendTotalTime": weekendTotalTime, // 周末可规划总时长
 		}, // 其他参数
 		"response_mode": "blocking",       // blocking 阻塞、non_blocking 非阻塞
 		"user":          "todo-ai-server", // 必须要填写

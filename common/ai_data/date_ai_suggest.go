@@ -14,6 +14,21 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 )
 
+// 获取任务优先级描述
+func GetTaskPriorityDesc(priority int) string {
+	if priority == 0 {
+		return "无优先级"
+	} else if priority == 1 {
+		return "低优先级"
+	} else if priority == 2 {
+		return "中优先级"
+	} else if priority == 3 {
+		return "高优先级"
+	}
+
+	return ""
+}
+
 // 获取今日待办任务数据(ai所需格式化)
 func GetTodayTasksData(userID int64, date string) (string, error) {
 	// 获取当日任务
@@ -38,7 +53,9 @@ func GetTodayTasksData(userID int64, date string) (string, error) {
 			isFinish = "未完成"
 		}
 
-		data += fmt.Sprintf("任务id: %d,任务名称：%s,任务状态：%s\n", task.TaskID, task.Name, isFinish)
+		priority := GetTaskPriorityDesc(task.Priority)
+
+		data += fmt.Sprintf("任务id: %d,任务名称：%s,任务优先级:%s,任务状态：%s\n", task.TaskID, task.Name, priority, isFinish)
 	}
 
 	return data, nil
@@ -69,7 +86,9 @@ func GetHistoryTasksData(userID int64) (string, error) {
 			isFinish = "未完成"
 		}
 
-		data += fmt.Sprintf("任务id: %d,日期: %s,任务名称：%s,任务状态：%s\n", task.TaskID, task.Date, task.Name, isFinish)
+		priority := GetTaskPriorityDesc(task.Priority)
+
+		data += fmt.Sprintf("任务id: %d,日期: %s,任务名称：%s,任务优先级:%s,任务状态：%s\n", task.TaskID, task.Date, task.Name, priority, isFinish)
 	}
 
 	return data, nil
