@@ -45,7 +45,7 @@ Page({
       url: api.ApiHost + "/im_plan/chat", 
       method: 'POST',
       data: { 
-        user_id: 1, 
+        user_id: api.UserID, 
         query: userMessage,
         conversation_id: this.data.conversationID,
       },
@@ -130,7 +130,7 @@ Page({
       url: api.ApiHost + '/im_plan/apply',
       method: 'post',
       data: {
-        "user_id": 1, 
+        "user_id": api.UserID, 
         ai_gen_cont: e.detail
       },
       header: {

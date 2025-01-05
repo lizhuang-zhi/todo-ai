@@ -161,7 +161,7 @@ Page({
       url: api.ApiHost + '/profile/data',
       method: 'get',
       data: {
-        "user_id": 1, 
+        "user_id": api.UserID, 
       },
       header: {
         'content-type': 'application/json',

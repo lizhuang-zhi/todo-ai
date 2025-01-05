@@ -46,8 +46,7 @@ Page({
         url: api.ApiHost + '/profile/data',
         method: 'get',
         data: {
-          "user_id": 1, 
-  
+          "user_id": api.UserID, 
         },
         header: {
           'content-type': 'application/json',
@@ -237,7 +236,7 @@ Page({
       method: 'get',
       data: {
         // TODO: 改为年获取
-        "user_id": 1, 
+        "user_id": api.UserID, 
       },
       header: {
         'content-type': 'application/json',

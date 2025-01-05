@@ -67,7 +67,7 @@ Page({
       url: api.ApiHost + '/date_ai_suggest/apply',
       method: 'POST',
       data: {
-        "user_id": 1, 
+        "user_id": api.UserID, 
         "date": this.data.selectDate,
         "ai_suggest": this.data.dateAiSuggestCont,
       },
@@ -128,7 +128,7 @@ Page({
       url: api.ApiHost + '/date_ai_suggest/click',
       method: 'post',
       data: {
-        "user_id": 1, 
+        "user_id": api.UserID, 
         "date": this.data.selectDate,
       },
       header: {
@@ -194,7 +194,7 @@ Page({
       url: api.ApiHost + '/task/list',
       method: 'get',
       data: {
-        "user_id": 1, 
+        "user_id": api.UserID, 
         "date": this.data.selectDate,
         "type": 0,
         // TODO: 改为年获取
@@ -249,7 +249,7 @@ Page({
       method: 'get',
       data: {
         // TODO: 改为年获取
-        "user_id": 1, 
+        "user_id": api.UserID, 
         "date": this.data.selectDate,
       },
       header: {
@@ -305,7 +305,7 @@ Page({
       url: api.ApiHost + '/task/create',
       method: 'POST',
       data: {
-        "user_id": 1, 
+        "user_id": api.UserID, 
         "name": this.data.taskName.trim(),
         "type": 0,
         "priority": priority,
