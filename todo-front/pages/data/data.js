@@ -41,40 +41,44 @@ Page({
 
   // 初始化数据
   async initData() {
-    wx.request({
-      url: api.ApiHost + '/profile/data',
-      method: 'get',
-      data: {
-        "user_id": 1, 
+    return new Promise((resolve, reject) => {
+      wx.request({
+        url: api.ApiHost + '/profile/data',
+        method: 'get',
+        data: {
+          "user_id": 1, 
+  
+        },
+        header: {
+          'content-type': 'application/json',
+          'Authorization': 'Bearer ' + api.AuthKey // 如果需要token
+        },
+        success: (res) => {
+          if (!res || !res.data) {
+            return 
+          }
+  
+          this.setData({
+            taskCount: res.data.total_task_len,
+            completionRate: (res.data.task_finished_rate * 100).toFixed(1),
+            barXData: res.data.bar_chart?.x_axis,
+            barYData: res.data.bar_chart?.y_axis,
+            lineXData: res.data.line_chart?.x_axis,
+            lineYData: res.data.line_chart?.y_axis,
+          })
 
-      },
-      header: {
-        'content-type': 'application/json',
-        'Authorization': 'Bearer ' + api.AuthKey // 如果需要token
-      },
-      success: (res) => {
-        if (!res || !res.data) {
-          return 
-        }
+          resolve(res.data);
+        },
+        fail: (err) => {
+          wx.showToast({
+            title: '网络错误',
+            icon: 'none'
+          })
 
-        this.setData({
-          taskCount: res.data.total_task_len,
-          completionRate: (res.data.task_finished_rate * 100).toFixed(1),
-          barXData: res.data.bar_chart?.x_axis,
-          barYData: res.data.bar_chart?.y_axis,
-          lineXData: res.data.line_chart?.x_axis,
-          lineYData: res.data.line_chart?.y_axis,
-        })
-      },
-      fail: (err) => {
-        wx.showToast({
-          title: '网络错误',
-          icon: 'none'
-        })
-      },
-      complete: () => {
-      }
-    })
+          reject(err);
+        },
+      })
+    });
   },
 
   async initCharts() {

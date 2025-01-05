@@ -330,7 +330,7 @@ Page({
           showPop: false,
         })
         // 重新拉取数据
-        this.refreshData(10)        
+        this.refreshData(5)        
       },
       fail: (err) => {
         wx.showToast({
@@ -465,7 +465,7 @@ Page({
           editID: '',
           showPop: false,
         })
-        this.refreshData(10)
+        this.refreshData(5)
       },
       fail: (err) => {
         wx.showToast({

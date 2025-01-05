@@ -57,7 +57,8 @@ const AgentSecret = "app-0K43SIwAVXhO30mwTFTsyut6" // 内网secret
 func ChatMessageDataRaw(history, queryCont, conversationID string) interface{} {
 	return map[string]interface{}{
 		"inputs": map[string]interface{}{
-			"history": history,
+			"history":   history, // 可选(历史待办数据)
+			"todayDate": time.Now().Format("2006-01-02"),
 		},
 		"query":           queryCont,
 		"response_mode":   "streaming", // SSE
