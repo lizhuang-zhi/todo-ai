@@ -70,7 +70,7 @@
 
 
   <!-- 待办列表 -->
-  <view class="todo-items">
+  <view class="todo-items" wx:if="{{todos.length != 0}}">
     <view class="item-wrap" wx:for="{{todos}}" wx:key="id">
       <view class="item-content {{ item.showDelete ? 'touch-move-active' : ''}}" 
         bindtouchstart="touchStart" 
@@ -95,6 +95,11 @@
         <view class="btn-edit" bindtap="editPop" data-index="{{index}}" data-item="{{item}}">修改</view>
       </view>
     </view>
+  </view>
+
+  <!-- 空状态展示 -->
+  <view class="empty-todo" wx:elee>
+    <image class="empty-img" src="../../images/empty_todo.png" mode=""/>
   </view>
 </view>
 
