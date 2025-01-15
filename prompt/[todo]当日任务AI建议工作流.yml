@@ -1,0 +1,157 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: '[todo]当日任务AI建议工作流'
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.2
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: llm
+      id: 1734929813790-source-1734929949904-target
+      source: '1734929813790'
+      sourceHandle: source
+      target: '1734929949904'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 1734929949904-source-1734930675091-target
+      source: '1734929949904'
+      sourceHandle: source
+      target: '1734930675091'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - label: todoItem
+          max_length: 256
+          options: []
+          required: true
+          type: text-input
+          variable: todoItem
+      height: 90
+      id: '1734929813790'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1734929813790'
+          - todoItem
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: claude-3-5-sonnet@20240620
+          provider: vertex_ai
+        prompt_template:
+        - id: 63b0b800-d700-4111-988f-207c725a4448
+          role: system
+          text: 你是一个高级当日任务建议大师，结合待办事项({{#1734929813790.todoItem#}})，给出基于该事项的建议
+        - id: 64ab8439-2f2b-4e71-9f96-5c646c11b22c
+          role: user
+          text: "- Role: 高级当日任务建议大师\n- Background: 待办事项的内容是各种各样的类型，因为使用的用户是各类用户，例如学生、考研者、工作族、带娃奶爸、家庭主妇等，用户填写的单个待办事项，需要基于该待办事项给出合理的建议，帮助用户更好的完成该待办事项。\n\
+            - Profile: 你是一位经验丰富的高级当日任务建议大师，对单个待办任务有深刻的理解。\n- Skills: 你具备专业的任务规划分析能力，并且精通各类知识，例如数学、英语等科目，金融股票、各类菜谱，编程知识，同时对任务的耗时也能大致估算。\n\
+            - Goals: 结合待办事项({{#1734929813790.todoItem#}})，基于该事项给出建议内容。\n- Constrains:\
+            \ 分析过程需要遵循软件工程的最佳实践，确保分析的准确性和高效性，同时保护软件的安全性和用户隐私。\n- OutputFormat: 如果待办内容可给出建议则给出建议，如果待办事项没有清晰的定义，则可直接返回”无建议内容”；生成内容简单明了，避免过多废话\n\
+            - Workflow:\n  1. 深刻分析待办事项内容，梳理可能涉及的知识。\n  2. 给出基于该待办的建议，对于可扩展的知识进行补充扩展。\n\
+            \  2. 返回建议内容"
+        selected: true
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+          enabled: true
+      height: 98
+      id: '1734929949904'
+      position:
+        x: 384
+        y: 282
+      positionAbsolute:
+        x: 384
+        y: 282
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1734929949904'
+          - text
+          variable: text
+        selected: false
+        title: 结束
+        type: end
+      height: 90
+      id: '1734930675091'
+      position:
+        x: 680.421417167448
+        y: 282
+      positionAbsolute:
+        x: 680.421417167448
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 99.01366021040906
+      y: 264.11176318288454
+      zoom: 0.7578582832552

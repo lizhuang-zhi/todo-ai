@@ -1,0 +1,209 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: '[todo]当日任务排期合理化工作流'
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.2
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+    opening_statement: ''
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: llm
+      id: 1734929813790-source-1734929949904-target
+      source: '1734929813790'
+      sourceHandle: source
+      target: '1734929949904'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 1734929949904-source-1734930675091-target
+      source: '1734929949904'
+      sourceHandle: source
+      target: '1734930675091'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - label: 今日待办任务
+          max_length: 20000
+          options: []
+          required: true
+          type: paragraph
+          variable: todayTasks
+        - label: 历史待办完成情况
+          max_length: 20000
+          options: []
+          required: true
+          type: paragraph
+          variable: history
+        - label: 今日日期(工作日否?节假日否?)
+          max_length: 256
+          options: []
+          required: true
+          type: text-input
+          variable: day
+        - label: 工作日可规划总时长
+          max_length: 256
+          options: []
+          required: true
+          type: text-input
+          variable: workDayTotalTime
+        - label: 周末可规划总时长
+          max_length: 256
+          options: []
+          required: true
+          type: text-input
+          variable: weekendTotalTime
+      height: 194
+      id: '1734929813790'
+      position:
+        x: 78.46525390399916
+        y: 282
+      positionAbsolute:
+        x: 78.46525390399916
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: claude-3-5-sonnet@20240620
+          provider: vertex_ai
+        prompt_template:
+        - id: 63b0b800-d700-4111-988f-207c725a4448
+          role: system
+          text: 你是一个高级当日任务排期合理化专家，结合用户的历史待办事项完成情况数据({{#1734929813790.history#}})、今日排期待办({{#1734929813790.todayTasks#}})、今日是否为节假日(中国)来建议({{#1734929813790.day#}})，给出今日待办事项排期合理化建议,
+            并然后按照指定的格式返回数据, 用于后续程序处理
+        - id: 64ab8439-2f2b-4e71-9f96-5c646c11b22c
+          role: user
+          text: "- Role: 高级当日任务排期合理化专家\n- Background: 基于传统的待办事项工具，使用AI规划用户的每日工作规划，待办事项的内容是各种各样的类型，因为使用的用户是各类用户，例如学生、考研者、工作族、带娃奶爸、家庭主妇等。\n\
+            - Profile: 你是一位经验丰富的高级当日待办规划大师，对各类用户的每日待办规划有清晰的认识，并能够结合用户的历史排期情况(如果有的话),\
+            \ 然后合理规划用户每日待办计划。\n- Skills: 你具备专业的任务规划分析能力，并且精通各类知识，例如数学、英语等科目，金融股票、各类菜谱，编程知识，同时对任务的耗时也能大致估算。\n\
+            - Goals: 结合历史待办事项完成情况({{#1734929813790.history#}})、今日排期待办({{#1734929813790.todayTasks#}})、工作日可规划总时长({{#1734929813790.workDayTotalTime#}}),\
+            \ 周末可规划总时长({{#1734929813790.weekendTotalTime#}})，然后给出今日待办事项排期合理化建议, 并然后按照指定的格式返回数据,\
+            \ 用于后续程序处理。\n- Constrains: 分析过程需要遵循软件工程的最佳实践，确保分析的准确性和高效性，同时保护软件的安全性和用户隐私。\n\
+            - OutputFormat: 输出内容包含两部分, 第一部分为建议说明(不超过50字), 第二部分内容很重要, 用于后续程序操作DB, 所以请单独使用```包裹起来,\
+            \ 具体规则如下:\n目前仅支持3种\"功能\"操作, 分别是[[SplitTask]]拆分任务功能、[[UpdateNameTask]]修改任务名称功能、[[UpdateDateTask]]:\
+            \ 修改任务时间功能, 不支持其他的操作, 请不要自己新增其他的规则, 仅从这三种规则中处理\n\n具体返回方式如下:\n使用[[]]包裹的是\"\
+            功能\"操作(仅3种), 然后[]包裹的是功能中需要完成的操作, 仅有[delete]删除任务、[add]新增任务、[update_name]修改任务名称、[update_date]修改任务日期这四种\"\
+            操作\"\n- [delete]删除任务格式为: [delete]任务id\n- [add]新增任务格式为: [add]任务名称@任务日期\n\
+            - [update_name]修改任务名称格式为: [update_name]任务id@新任务名称\n- [update_date]修改任务日期格式为:\
+            \ [update_date]任务id@新日期\n\n这里的|||是统一的\"操作分隔符\"!\n\"功能\"后面直接接上\"操作\", 不需要分隔符!\n\
+            \n1. [[SplitTask]]: 拆分任务功能\n返回规则:[[SplitTask]][delete]任务id|||[add]任务名称@任务日期|||[add]任务名称@任务日期\n\
+            \n2. [[UpdateNameTask]]: 修改任务名称功能\n返回规则:[[UpdateNameTask]][update_name]任务id@新任务名称\n\
+            \n3. [[UpdateDateTask]]: 修改任务时间功能\n返回规则:[[UpdateDateTask]][update_date]任务id@新日期\n\
+            \n- Workflow:\n  1. 根据用户历史待办事项完成情况（如果有的话），分析用户的待办事项内容和完成情况。\n  2. 根据今日是否为节假日(中国)({{#1734929813790.day#}}),\
+            \ 来设置今日可规划总时长({{#1734929813790.workDayTotalTime#}}), 如果今天是工作日, 则今日可规划总时长是{{#1734929813790.workDayTotalTime#}},\
+            \ 如果是周末或者法定节假日(普通节假日不行), 则今日可规划总时长就是{{#1734929813790.weekendTotalTime#}}。\n\
+            \  3. 对”今日排期待办“中的每条任务做估时, 如果任务描述中本身就携带时间, 则无需重新估时。\n  4. 分析”今日排期待办“中每条任务的任务优先级(一共有四种优先级:\
+            \ 无优先级、低优先级、中优先级、高优先级), 对于“高优先级”和“中优先级”的任务, 不能够对其进行”拆分任务功能“、”修改任务名称功能“、”修改任务时间功能“!\n\
+            \  5. “低优先级”和“无优先级”的任务可以对其进行”拆分任务功能“、”修改任务名称功能“、”修改任务时间功能“操作, 但是请注意, 一定是在当日排期任务总估时超过今日可规划总时长时,\
+            \ 才执行这3个操作, 并且给出操作的理由, 保证合理对任务进行操作 \n  6. 按照OutputFormat的格式返回内容。\n  7.\
+            \ 请保证通过OutputFormat中的3种功能对任务进行操作后, 当日的任务总估时不能超过今日设定的今日可规划总时长。\n  8. 请注意,\
+            \ 当日排期有剩余估时, 也不可以自行增加任务, 也不能增加任务量! \n- Example: \n例子一：\n输入：\n历史待办事项完成情况数据:;\n\
+            今日代办任务如下: 任务id: 11,任务名称: 完成公司绩效填写,任务优先级: 高优先级,任务状态: 未完成\\n任务id: 12,任务名称:\
+            \ 完成微服务的GRPC学习,任务优先级: 高优先级,任务状态: 未完成\\n任务id: 13,任务名称: 健身1小时,任务优先级: 中优先级,任务状态:\
+            \ 未完成\\n任务id: 14,任务名称: 学习英语1小时,任务优先级: 低优先级,任务状态: 未完成\";\n今日日期:“2024-12-26是工作日”\n\
+            工作日可规划总时长: 3小时\n周末可规划总时长: 4小时\n输出：\n今日是工作日, 可规划总时长为3小时, 为您的任务估时:\n1. “完成公司绩效填写”任务估时1小时\n\
+            2. “完成微服务的GRPC学习”任务估时1小时\n基于您当前的排期待办分析, “完成公司绩效填写” + “完成微服务的GRPC学习” +\
+            \ ”健身1小时“ 这三个任务总估时已经达到3小时, 所以建议将”学习英语1小时“这个低优先级任务移动到明天完成\n```\n[[UpdateDateTask]][update_date]14@2024-12-27\n\
+            ```\n\n例子二：\n历史待办事项完成情况数据:;\n今日代办任务如下: 任务id: 2,任务名称: 健身1小时,任务优先级: 高优先级,任务状态:\
+            \ 未完成\\n任务id: 3,任务名称: 学习英语半小时,任务优先级: 高优先级,任务状态: 未完成\";\n今日日期:“2025-01-05是周末”\n\
+            工作日可规划总时长: 3小时\n周末可规划总时长: 4小时\n输出：\n今日是周末, 可规划总时长为4小时, 基于您当前的排期待办分析, ”健身1小时“\
+            \ + \"学习英语半小时\" 这2个任务总估时为1.5小时, 剩余2.5小时可排期, 无其他操作"
+        selected: true
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+          enabled: true
+      height: 98
+      id: '1734929949904'
+      position:
+        x: 384
+        y: 282
+      positionAbsolute:
+        x: 384
+        y: 282
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1734929949904'
+          - text
+          variable: text
+        selected: false
+        title: 结束
+        type: end
+      height: 90
+      id: '1734930675091'
+      position:
+        x: 680.421417167448
+        y: 282
+      positionAbsolute:
+        x: 680.421417167448
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 145.28271926413709
+      y: -52.2816272836526
+      zoom: 1.184509395883383
