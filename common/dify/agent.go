@@ -13,7 +13,7 @@ const User = "leo"
 
 // TODO: 待正式服更新dify版本(现在版本有Bug)
 const ApiUrl = "http://10.1.7.166/v1"
-const AgentSecret = "app-0K43SIwAVXhO30mwTFTsyut6" // 内网secret
+const AgentSecret = "app-fj4hykVi9pOiN8vbKTndQDPC" // 内网secret
 
 // type ChatHistory struct {
 // 	Messages       []*Message

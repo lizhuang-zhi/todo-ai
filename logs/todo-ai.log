@@ -38,3 +38,220 @@
 {"level":"INFO","time":"2024-12-22T14:55:24.665+0800","name":"todo-ai","msg":"[todo-ai] 200 POST    /task/finished","ip":"::1","cost":15}
 {"level":"INFO","time":"2024-12-22T14:55:45.214+0800","name":"todo-ai","msg":"[todo-ai] 200 POST    /task/finished","ip":"::1","cost":2}
 {"level":"INFO","time":"2024-12-22T14:56:05.833+0800","name":"todo-ai","msg":"[todo-ai] 200 POST    /task/finished","ip":"::1","cost":11}
+{"level":"INFO","time":"2025-01-06T12:32:34.300+0800","name":"todo-ai","msg":"HttpServer start with addr: 0.0.0.0:18888","caller":"core/server.go:31"}
+{"level":"INFO","time":"2025-01-06T12:32:34.314+0800","name":"todo-ai","msg":"todo-ai start, srvID: todo-ai-cttlpoj5grbfcl3r2dmg","caller":"todo-ai/main.go:125"}
+{"level":"INFO","time":"2025-01-06T12:32:34.415+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /calendar/data?year=2025","ip":"127.0.0.1","cost":0}
+{"level":"ERROR","time":"2025-01-06T12:32:34.417+0800","name":"todo-ai","msg":"ListTask BindJSON error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"api/task.go:383"}
+{"level":"ERROR","time":"2025-01-06T12:32:34.417+0800","name":"todo-ai","msg":"handle /task/list?user_id=undefined&date=2025-01-06&type=0&year=2024 error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"router/router.go:50"}
+{"level":"INFO","time":"2025-01-06T12:32:34.417+0800","name":"todo-ai","msg":"[todo-ai] 400 GET     /task/list?user_id=undefined&date=2025-01-06&type=0&year=2024","ip":"127.0.0.1","cost":0}
+{"level":"ERROR","time":"2025-01-06T12:32:34.419+0800","name":"todo-ai","msg":"DateAiSuggestion BindJSON error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"api/date_ai_suggest.go:24"}
+{"level":"ERROR","time":"2025-01-06T12:32:34.419+0800","name":"todo-ai","msg":"handle /date_ai_suggest/data?user_id=undefined&date=2025-01-06 error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"router/router.go:50"}
+{"level":"INFO","time":"2025-01-06T12:32:34.419+0800","name":"todo-ai","msg":"[todo-ai] 400 GET     /date_ai_suggest/data?user_id=undefined&date=2025-01-06","ip":"127.0.0.1","cost":0}
+{"level":"ERROR","time":"2025-01-06T12:32:36.467+0800","name":"todo-ai","msg":"ListTask BindJSON error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"api/task.go:383"}
+{"level":"ERROR","time":"2025-01-06T12:32:36.467+0800","name":"todo-ai","msg":"DateAiSuggestion BindJSON error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"api/date_ai_suggest.go:24"}
+{"level":"ERROR","time":"2025-01-06T12:32:36.467+0800","name":"todo-ai","msg":"handle /task/list?user_id=undefined&date=2025-01-07&type=0&year=2024 error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"router/router.go:50"}
+{"level":"ERROR","time":"2025-01-06T12:32:36.467+0800","name":"todo-ai","msg":"handle /date_ai_suggest/data?user_id=undefined&date=2025-01-07 error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"router/router.go:50"}
+{"level":"INFO","time":"2025-01-06T12:32:36.468+0800","name":"todo-ai","msg":"[todo-ai] 400 GET     /task/list?user_id=undefined&date=2025-01-07&type=0&year=2024","ip":"127.0.0.1","cost":1}
+{"level":"INFO","time":"2025-01-06T12:32:36.468+0800","name":"todo-ai","msg":"[todo-ai] 400 GET     /date_ai_suggest/data?user_id=undefined&date=2025-01-07","ip":"127.0.0.1","cost":1}
+{"level":"ERROR","time":"2025-01-06T12:32:37.092+0800","name":"todo-ai","msg":"ListTask BindJSON error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"api/task.go:383"}
+{"level":"ERROR","time":"2025-01-06T12:32:37.092+0800","name":"todo-ai","msg":"DateAiSuggestion BindJSON error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"api/date_ai_suggest.go:24"}
+{"level":"ERROR","time":"2025-01-06T12:32:37.092+0800","name":"todo-ai","msg":"handle /task/list?user_id=undefined&date=2025-01-06&type=0&year=2024 error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"router/router.go:50"}
+{"level":"ERROR","time":"2025-01-06T12:32:37.093+0800","name":"todo-ai","msg":"handle /date_ai_suggest/data?user_id=undefined&date=2025-01-06 error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"router/router.go:50"}
+{"level":"INFO","time":"2025-01-06T12:32:37.093+0800","name":"todo-ai","msg":"[todo-ai] 400 GET     /task/list?user_id=undefined&date=2025-01-06&type=0&year=2024","ip":"127.0.0.1","cost":1}
+{"level":"INFO","time":"2025-01-06T12:32:37.093+0800","name":"todo-ai","msg":"[todo-ai] 400 GET     /date_ai_suggest/data?user_id=undefined&date=2025-01-06","ip":"127.0.0.1","cost":1}
+{"level":"ERROR","time":"2025-01-06T12:32:40.373+0800","name":"todo-ai","msg":"ListTask BindJSON error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"api/task.go:383"}
+{"level":"ERROR","time":"2025-01-06T12:32:40.373+0800","name":"todo-ai","msg":"DateAiSuggestion BindJSON error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"api/date_ai_suggest.go:24"}
+{"level":"ERROR","time":"2025-01-06T12:32:40.374+0800","name":"todo-ai","msg":"handle /date_ai_suggest/data?user_id=undefined&date=2025-01-22 error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"router/router.go:50"}
+{"level":"ERROR","time":"2025-01-06T12:32:40.373+0800","name":"todo-ai","msg":"handle /task/list?user_id=undefined&date=2025-01-22&type=0&year=2024 error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"router/router.go:50"}
+{"level":"INFO","time":"2025-01-06T12:32:40.374+0800","name":"todo-ai","msg":"[todo-ai] 400 GET     /date_ai_suggest/data?user_id=undefined&date=2025-01-22","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:32:40.374+0800","name":"todo-ai","msg":"[todo-ai] 400 GET     /task/list?user_id=undefined&date=2025-01-22&type=0&year=2024","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:32:57.272+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /calendar/data?year=2025","ip":"127.0.0.1","cost":0}
+{"level":"ERROR","time":"2025-01-06T12:32:57.274+0800","name":"todo-ai","msg":"ListTask BindJSON error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"api/task.go:383"}
+{"level":"ERROR","time":"2025-01-06T12:32:57.274+0800","name":"todo-ai","msg":"handle /task/list?user_id=undefined&date=2025-01-06&type=0&year=2024 error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"router/router.go:50"}
+{"level":"INFO","time":"2025-01-06T12:32:57.274+0800","name":"todo-ai","msg":"[todo-ai] 400 GET     /task/list?user_id=undefined&date=2025-01-06&type=0&year=2024","ip":"127.0.0.1","cost":0}
+{"level":"ERROR","time":"2025-01-06T12:32:57.284+0800","name":"todo-ai","msg":"DateAiSuggestion BindJSON error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"api/date_ai_suggest.go:24"}
+{"level":"ERROR","time":"2025-01-06T12:32:57.284+0800","name":"todo-ai","msg":"handle /date_ai_suggest/data?user_id=undefined&date=2025-01-06 error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"router/router.go:50"}
+{"level":"INFO","time":"2025-01-06T12:32:57.284+0800","name":"todo-ai","msg":"[todo-ai] 400 GET     /date_ai_suggest/data?user_id=undefined&date=2025-01-06","ip":"127.0.0.1","cost":0}
+{"level":"ERROR","time":"2025-01-06T12:33:02.777+0800","name":"todo-ai","msg":"ListTask BindJSON error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"api/task.go:383"}
+{"level":"ERROR","time":"2025-01-06T12:33:02.778+0800","name":"todo-ai","msg":"handle /task/list?user_id=undefined&date=2025-01-07&type=0&year=2024 error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"router/router.go:50"}
+{"level":"INFO","time":"2025-01-06T12:33:02.778+0800","name":"todo-ai","msg":"[todo-ai] 400 GET     /task/list?user_id=undefined&date=2025-01-07&type=0&year=2024","ip":"127.0.0.1","cost":0}
+{"level":"ERROR","time":"2025-01-06T12:33:02.779+0800","name":"todo-ai","msg":"DateAiSuggestion BindJSON error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"api/date_ai_suggest.go:24"}
+{"level":"ERROR","time":"2025-01-06T12:33:02.779+0800","name":"todo-ai","msg":"handle /date_ai_suggest/data?user_id=undefined&date=2025-01-07 error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"router/router.go:50"}
+{"level":"INFO","time":"2025-01-06T12:33:02.779+0800","name":"todo-ai","msg":"[todo-ai] 400 GET     /date_ai_suggest/data?user_id=undefined&date=2025-01-07","ip":"127.0.0.1","cost":0}
+{"level":"ERROR","time":"2025-01-06T12:33:03.666+0800","name":"todo-ai","msg":"ListTask BindJSON error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"api/task.go:383"}
+{"level":"ERROR","time":"2025-01-06T12:33:03.667+0800","name":"todo-ai","msg":"handle /task/list?user_id=undefined&date=2025-01-07&type=0&year=2024 error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"router/router.go:50"}
+{"level":"INFO","time":"2025-01-06T12:33:03.667+0800","name":"todo-ai","msg":"[todo-ai] 400 GET     /task/list?user_id=undefined&date=2025-01-07&type=0&year=2024","ip":"127.0.0.1","cost":0}
+{"level":"ERROR","time":"2025-01-06T12:33:03.668+0800","name":"todo-ai","msg":"DateAiSuggestion BindJSON error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"api/date_ai_suggest.go:24"}
+{"level":"ERROR","time":"2025-01-06T12:33:03.668+0800","name":"todo-ai","msg":"handle /date_ai_suggest/data?user_id=undefined&date=2025-01-07 error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"router/router.go:50"}
+{"level":"INFO","time":"2025-01-06T12:33:03.669+0800","name":"todo-ai","msg":"[todo-ai] 400 GET     /date_ai_suggest/data?user_id=undefined&date=2025-01-07","ip":"127.0.0.1","cost":0}
+{"level":"ERROR","time":"2025-01-06T12:33:05.408+0800","name":"todo-ai","msg":"handle /task/delete error:task_id is empty","caller":"router/router.go:50"}
+{"level":"INFO","time":"2025-01-06T12:33:05.408+0800","name":"todo-ai","msg":"[todo-ai] 500 POST    /task/delete","ip":"127.0.0.1","cost":0}
+{"level":"ERROR","time":"2025-01-06T12:33:05.423+0800","name":"todo-ai","msg":"ListTask BindJSON error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"api/task.go:383"}
+{"level":"ERROR","time":"2025-01-06T12:33:05.423+0800","name":"todo-ai","msg":"DateAiSuggestion BindJSON error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"api/date_ai_suggest.go:24"}
+{"level":"ERROR","time":"2025-01-06T12:33:05.423+0800","name":"todo-ai","msg":"handle /task/list?user_id=undefined&date=2025-01-07&type=0&year=2024 error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"router/router.go:50"}
+{"level":"ERROR","time":"2025-01-06T12:33:05.424+0800","name":"todo-ai","msg":"handle /date_ai_suggest/data?user_id=undefined&date=2025-01-07 error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"router/router.go:50"}
+{"level":"INFO","time":"2025-01-06T12:33:05.424+0800","name":"todo-ai","msg":"[todo-ai] 400 GET     /task/list?user_id=undefined&date=2025-01-07&type=0&year=2024","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:33:05.424+0800","name":"todo-ai","msg":"[todo-ai] 400 GET     /date_ai_suggest/data?user_id=undefined&date=2025-01-07","ip":"127.0.0.1","cost":0}
+{"level":"ERROR","time":"2025-01-06T12:33:09.119+0800","name":"todo-ai","msg":"ListTask BindJSON error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"api/task.go:383"}
+{"level":"ERROR","time":"2025-01-06T12:33:09.119+0800","name":"todo-ai","msg":"DateAiSuggestion BindJSON error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"api/date_ai_suggest.go:24"}
+{"level":"ERROR","time":"2025-01-06T12:33:09.119+0800","name":"todo-ai","msg":"handle /task/list?user_id=undefined&date=2025-01-09&type=0&year=2024 error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"router/router.go:50"}
+{"level":"ERROR","time":"2025-01-06T12:33:09.119+0800","name":"todo-ai","msg":"handle /date_ai_suggest/data?user_id=undefined&date=2025-01-09 error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"router/router.go:50"}
+{"level":"INFO","time":"2025-01-06T12:33:09.119+0800","name":"todo-ai","msg":"[todo-ai] 400 GET     /task/list?user_id=undefined&date=2025-01-09&type=0&year=2024","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:33:09.120+0800","name":"todo-ai","msg":"[todo-ai] 400 GET     /date_ai_suggest/data?user_id=undefined&date=2025-01-09","ip":"127.0.0.1","cost":0}
+{"level":"ERROR","time":"2025-01-06T12:33:09.625+0800","name":"todo-ai","msg":"ListTask BindJSON error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"api/task.go:383"}
+{"level":"ERROR","time":"2025-01-06T12:33:09.625+0800","name":"todo-ai","msg":"handle /task/list?user_id=undefined&date=2025-01-08&type=0&year=2024 error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"router/router.go:50"}
+{"level":"INFO","time":"2025-01-06T12:33:09.625+0800","name":"todo-ai","msg":"[todo-ai] 400 GET     /task/list?user_id=undefined&date=2025-01-08&type=0&year=2024","ip":"127.0.0.1","cost":0}
+{"level":"ERROR","time":"2025-01-06T12:33:09.626+0800","name":"todo-ai","msg":"DateAiSuggestion BindJSON error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"api/date_ai_suggest.go:24"}
+{"level":"ERROR","time":"2025-01-06T12:33:09.626+0800","name":"todo-ai","msg":"handle /date_ai_suggest/data?user_id=undefined&date=2025-01-08 error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"router/router.go:50"}
+{"level":"INFO","time":"2025-01-06T12:33:09.626+0800","name":"todo-ai","msg":"[todo-ai] 400 GET     /date_ai_suggest/data?user_id=undefined&date=2025-01-08","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:02.098+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /calendar/data?year=2025","ip":"127.0.0.1","cost":0}
+{"level":"ERROR","time":"2025-01-06T12:34:02.101+0800","name":"todo-ai","msg":"ListTask BindJSON error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"api/task.go:383"}
+{"level":"ERROR","time":"2025-01-06T12:34:02.102+0800","name":"todo-ai","msg":"handle /task/list?user_id=undefined&date=2025-01-06&type=0&year=2024 error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"router/router.go:50"}
+{"level":"INFO","time":"2025-01-06T12:34:02.102+0800","name":"todo-ai","msg":"[todo-ai] 400 GET     /task/list?user_id=undefined&date=2025-01-06&type=0&year=2024","ip":"127.0.0.1","cost":0}
+{"level":"ERROR","time":"2025-01-06T12:34:02.138+0800","name":"todo-ai","msg":"DateAiSuggestion BindJSON error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"api/date_ai_suggest.go:24"}
+{"level":"ERROR","time":"2025-01-06T12:34:02.138+0800","name":"todo-ai","msg":"handle /date_ai_suggest/data?user_id=undefined&date=2025-01-06 error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"router/router.go:50"}
+{"level":"INFO","time":"2025-01-06T12:34:02.138+0800","name":"todo-ai","msg":"[todo-ai] 400 GET     /date_ai_suggest/data?user_id=undefined&date=2025-01-06","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:15.620+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /calendar/data?year=2025","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:15.656+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /task/list?user_id=1&date=2025-01-06&type=0&year=2024","ip":"127.0.0.1","cost":12}
+{"level":"INFO","time":"2025-01-06T12:34:15.663+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /date_ai_suggest/data?user_id=1&date=2025-01-06","ip":"127.0.0.1","cost":8}
+{"level":"INFO","time":"2025-01-06T12:34:22.196+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /calendar/data?year=2025","ip":"127.0.0.1","cost":1}
+{"level":"INFO","time":"2025-01-06T12:34:22.207+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /task/list?user_id=1&date=2025-01-06&type=0&year=2024","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:22.242+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /date_ai_suggest/data?user_id=1&date=2025-01-06","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:23.712+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /date_ai_suggest/data?user_id=1&date=2025-01-07","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:23.712+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /task/list?user_id=1&date=2025-01-07&type=0&year=2024","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:24.228+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /date_ai_suggest/data?user_id=1&date=2025-01-08","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:24.228+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /task/list?user_id=1&date=2025-01-08&type=0&year=2024","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:24.728+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /date_ai_suggest/data?user_id=1&date=2025-01-01","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:24.728+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /task/list?user_id=1&date=2025-01-01&type=0&year=2024","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:25.634+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /date_ai_suggest/data?user_id=1&date=2025-01-05","ip":"127.0.0.1","cost":1}
+{"level":"INFO","time":"2025-01-06T12:34:25.634+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /task/list?user_id=1&date=2025-01-05&type=0&year=2024","ip":"127.0.0.1","cost":1}
+{"level":"INFO","time":"2025-01-06T12:34:26.573+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /task/list?user_id=1&date=2024-12-24&type=0&year=2024","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:26.573+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /date_ai_suggest/data?user_id=1&date=2024-12-24","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:26.935+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /date_ai_suggest/data?user_id=1&date=2024-12-25","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:26.935+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /task/list?user_id=1&date=2024-12-25&type=0&year=2024","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:27.762+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /date_ai_suggest/data?user_id=1&date=2025-01-09","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:27.762+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /task/list?user_id=1&date=2025-01-09&type=0&year=2024","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:28.147+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /date_ai_suggest/data?user_id=1&date=2025-01-08","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:28.147+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /task/list?user_id=1&date=2025-01-08&type=0&year=2024","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:28.468+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /task/list?user_id=1&date=2025-01-02&type=0&year=2024","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:28.468+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /date_ai_suggest/data?user_id=1&date=2025-01-02","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:28.808+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /date_ai_suggest/data?user_id=1&date=2025-01-03","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:28.808+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /task/list?user_id=1&date=2025-01-03&type=0&year=2024","ip":"127.0.0.1","cost":1}
+{"level":"INFO","time":"2025-01-06T12:34:29.105+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /task/list?user_id=1&date=2025-01-08&type=0&year=2024","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:29.109+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /date_ai_suggest/data?user_id=1&date=2025-01-08","ip":"127.0.0.1","cost":2}
+{"level":"INFO","time":"2025-01-06T12:34:29.383+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /date_ai_suggest/data?user_id=1&date=2025-01-10","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:29.383+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /task/list?user_id=1&date=2025-01-10&type=0&year=2024","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:30.190+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /date_ai_suggest/data?user_id=1&date=2025-01-01","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:30.190+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /task/list?user_id=1&date=2025-01-01&type=0&year=2024","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:30.786+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /task/list?user_id=1&date=2025-01-06&type=0&year=2024","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:30.787+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /date_ai_suggest/data?user_id=1&date=2025-01-06","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:31.302+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /task/list?user_id=1&date=2025-01-05&type=0&year=2024","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:31.302+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /date_ai_suggest/data?user_id=1&date=2025-01-05","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:31.737+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /date_ai_suggest/data?user_id=1&date=2025-01-10","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:31.737+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /task/list?user_id=1&date=2025-01-10&type=0&year=2024","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:32.035+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /date_ai_suggest/data?user_id=1&date=2025-01-03","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:32.035+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /task/list?user_id=1&date=2025-01-03&type=0&year=2024","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:32.542+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /task/list?user_id=1&date=2025-01-02&type=0&year=2024","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:32.542+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /date_ai_suggest/data?user_id=1&date=2025-01-02","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:42.833+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /task/list?user_id=1&date=2025-02-03&type=0&year=2024","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:42.848+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /date_ai_suggest/data?user_id=1&date=2025-02-03","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:43.358+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /date_ai_suggest/data?user_id=1&date=2025-02-04","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:43.358+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /task/list?user_id=1&date=2025-02-04&type=0&year=2024","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:44.693+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /date_ai_suggest/data?user_id=1&date=2025-02-01","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:44.693+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /task/list?user_id=1&date=2025-02-01&type=0&year=2024","ip":"127.0.0.1","cost":0}
+{"level":"INFO","time":"2025-01-06T12:34:45.268+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /task/list?user_id=1&date=2025-02-14&type=0&year=2024","ip":"127.0.0.1","cost":1}
+{"level":"INFO","time":"2025-01-06T12:34:45.268+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /date_ai_suggest/data?user_id=1&date=2025-02-14","ip":"127.0.0.1","cost":1}
+{"level":"ERROR","time":"2025-01-06T12:34:53.327+0800","name":"todo-ai","msg":"[GetHistoryConversations] get with error: 401 UNAUTHORIZED, last_id[], pinned[true], limit[20]","caller":"dify/agent.go:210"}
+{"level":"ERROR","time":"2025-01-06T12:34:53.327+0800","name":"todo-ai","msg":"[ChatHistoryConversations] dify GetHistoryConversations with err 401 UNAUTHORIZED, last_id[], pinned[true], limit[20]","caller":"api/im_plan.go:129"}
+{"level":"ERROR","time":"2025-01-06T12:34:53.328+0800","name":"todo-ai","msg":"handle /im_plan/conversations?pinned=true&last_id=&limit=20 error:401 UNAUTHORIZED","caller":"router/router.go:50"}
+{"level":"INFO","time":"2025-01-06T12:34:53.328+0800","name":"todo-ai","msg":"[todo-ai] 500 GET     /im_plan/conversations?pinned=true&last_id=&limit=20","ip":"127.0.0.1","cost":49}
+{"level":"INFO","time":"2025-01-06T12:34:53.959+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /profile/data?user_id=1","ip":"127.0.0.1","cost":679}
+{"level":"INFO","time":"2025-01-06T12:58:59.316+0800","name":"todo-ai","msg":"Recv signal interrupt","caller":"todo-ai/main.go:184"}
+{"level":"INFO","time":"2025-01-06T12:59:05.008+0800","name":"todo-ai","msg":"HttpServer start with addr: 0.0.0.0:18888","caller":"core/server.go:31"}
+{"level":"INFO","time":"2025-01-06T12:59:05.023+0800","name":"todo-ai","msg":"todo-ai start, srvID: todo-ai-cttm66b5grbce25ehor0","caller":"todo-ai/main.go:125"}
+{"level":"INFO","time":"2025-01-06T12:59:41.013+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /profile/data?user_id=1","ip":"::1","cost":691}
+{"level":"INFO","time":"2025-01-06T12:59:41.017+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /profile/data?user_id=1","ip":"::1","cost":2}
+{"level":"INFO","time":"2025-01-06T12:59:41.020+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /profile/data?user_id=1","ip":"::1","cost":2}
+{"level":"INFO","time":"2025-01-06T12:59:41.025+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /profile/data?user_id=1","ip":"::1","cost":3}
+{"level":"ERROR","time":"2025-01-06T13:00:22.912+0800","name":"todo-ai","msg":"ProfileData BindJSON error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"api/profile.go:47"}
+{"level":"ERROR","time":"2025-01-06T13:00:22.913+0800","name":"todo-ai","msg":"handle /profile/data?user_id=undefined error:strconv.ParseInt: parsing \"undefined\": invalid syntax","caller":"router/router.go:50"}
+{"level":"INFO","time":"2025-01-06T13:00:22.913+0800","name":"todo-ai","msg":"[todo-ai] 400 GET     /profile/data?user_id=undefined","ip":"::1","cost":0}
+{"level":"INFO","time":"2025-01-06T13:00:22.973+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/conversations?pinned=true&last_id=&limit=20","ip":"::1","cost":60}
+{"level":"INFO","time":"2025-01-06T13:00:23.170+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=6bfb6052-9e0b-4937-a055-074e71eed6fb&first_id=&limit=20","ip":"::1","cost":75}
+{"level":"INFO","time":"2025-01-06T13:00:23.259+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=89f19413-0fed-4b6e-b1be-c6cd87757c56&first_id=&limit=20","ip":"::1","cost":78}
+{"level":"INFO","time":"2025-01-06T13:00:23.350+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=fab192fa-82ce-47af-96be-7fa19ce01fbc&first_id=&limit=20","ip":"::1","cost":78}
+{"level":"INFO","time":"2025-01-06T13:00:23.427+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=0d8af399-113d-4bbb-92a8-2ecb1be4b609&first_id=&limit=20","ip":"::1","cost":67}
+{"level":"INFO","time":"2025-01-06T13:00:23.498+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=4c360aa9-407b-48e8-a0a1-2162ce247861&first_id=&limit=20","ip":"::1","cost":61}
+{"level":"INFO","time":"2025-01-06T13:00:23.566+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=cc5d8eb9-807a-491b-a482-24a934928e41&first_id=&limit=20","ip":"::1","cost":53}
+{"level":"INFO","time":"2025-01-06T13:00:23.646+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=beed50e5-3c5d-4d52-a93f-8c5ef8708cbb&first_id=&limit=20","ip":"::1","cost":68}
+{"level":"INFO","time":"2025-01-06T13:00:23.729+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=ca3d93fc-8fd2-4de0-a7ad-5fd62d959d04&first_id=&limit=20","ip":"::1","cost":72}
+{"level":"INFO","time":"2025-01-06T13:00:23.768+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=f0a36bcb-5b39-463f-a69f-c1f136784880&first_id=&limit=20","ip":"::1","cost":30}
+{"level":"INFO","time":"2025-01-06T13:00:23.822+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=bdc2b103-7b1e-4672-9597-fea883705525&first_id=&limit=20","ip":"::1","cost":43}
+{"level":"INFO","time":"2025-01-06T13:00:23.891+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=4fcfdcb0-6c18-4c2f-bc3a-d462ceb55081&first_id=&limit=20","ip":"::1","cost":60}
+{"level":"INFO","time":"2025-01-06T13:00:23.952+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=a76c3900-f8fb-478b-a03e-70bd41b34c34&first_id=&limit=20","ip":"::1","cost":52}
+{"level":"INFO","time":"2025-01-06T13:00:24.004+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=e00957eb-a9ce-4904-a589-8b1cd1f9f1a3&first_id=&limit=20","ip":"::1","cost":41}
+{"level":"INFO","time":"2025-01-06T13:00:24.103+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=0d2fe9e6-9117-46e0-9aa8-c4e72754fa7a&first_id=&limit=20","ip":"::1","cost":88}
+{"level":"INFO","time":"2025-01-06T13:00:24.169+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=492873f9-683e-439e-a211-3a4fd966a321&first_id=&limit=20","ip":"::1","cost":54}
+{"level":"INFO","time":"2025-01-06T13:00:24.243+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=1b3a6793-a69b-4180-86d9-016965c1eeb3&first_id=&limit=20","ip":"::1","cost":64}
+{"level":"INFO","time":"2025-01-06T13:00:24.312+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=d613133f-76e7-42fd-b81b-bc19636f2d9f&first_id=&limit=20","ip":"::1","cost":57}
+{"level":"INFO","time":"2025-01-06T13:00:24.375+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=6bc024b3-54f2-41a5-811c-2b5315e43285&first_id=&limit=20","ip":"::1","cost":48}
+{"level":"INFO","time":"2025-01-06T13:00:24.435+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=8b9ca98e-04ca-469c-b913-5fc9b110c099&first_id=&limit=20","ip":"::1","cost":48}
+{"level":"INFO","time":"2025-01-06T13:00:24.492+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=3d035da2-9067-453e-a000-5fb025f63276&first_id=&limit=20","ip":"::1","cost":46}
+{"level":"INFO","time":"2025-01-06T13:02:11.484+0800","name":"todo-ai","msg":"Recv signal interrupt","caller":"todo-ai/main.go:184"}
+{"level":"INFO","time":"2025-01-06T13:02:34.320+0800","name":"todo-ai","msg":"HttpServer start with addr: 0.0.0.0:18888","caller":"core/server.go:31"}
+{"level":"INFO","time":"2025-01-06T13:02:34.334+0800","name":"todo-ai","msg":"todo-ai start, srvID: todo-ai-cttm7qj5grbeqa51gamg","caller":"todo-ai/main.go:125"}
+{"level":"INFO","time":"2025-01-06T13:03:36.969+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /calendar/data?year=2025","ip":"::1","cost":0}
+{"level":"INFO","time":"2025-01-06T13:03:36.971+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /task/list?user_id=1&date=2025-01-06&type=0&year=2024","ip":"::1","cost":1}
+{"level":"INFO","time":"2025-01-06T13:03:37.032+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /date_ai_suggest/data?user_id=1&date=2025-01-06","ip":"::1","cost":1}
+{"level":"INFO","time":"2025-01-06T13:03:39.366+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/conversations?pinned=true&last_id=&limit=20","ip":"::1","cost":38}
+{"level":"INFO","time":"2025-01-06T13:03:39.435+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=6bfb6052-9e0b-4937-a055-074e71eed6fb&first_id=&limit=20","ip":"::1","cost":54}
+{"level":"INFO","time":"2025-01-06T13:03:39.495+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=89f19413-0fed-4b6e-b1be-c6cd87757c56&first_id=&limit=20","ip":"::1","cost":50}
+{"level":"INFO","time":"2025-01-06T13:03:39.576+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=fab192fa-82ce-47af-96be-7fa19ce01fbc&first_id=&limit=20","ip":"::1","cost":67}
+{"level":"INFO","time":"2025-01-06T13:03:39.640+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=0d8af399-113d-4bbb-92a8-2ecb1be4b609&first_id=&limit=20","ip":"::1","cost":52}
+{"level":"INFO","time":"2025-01-06T13:03:39.697+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=4c360aa9-407b-48e8-a0a1-2162ce247861&first_id=&limit=20","ip":"::1","cost":46}
+{"level":"INFO","time":"2025-01-06T13:03:39.758+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=cc5d8eb9-807a-491b-a482-24a934928e41&first_id=&limit=20","ip":"::1","cost":48}
+{"level":"INFO","time":"2025-01-06T13:03:39.829+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=beed50e5-3c5d-4d52-a93f-8c5ef8708cbb&first_id=&limit=20","ip":"::1","cost":56}
+{"level":"INFO","time":"2025-01-06T13:03:39.909+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=ca3d93fc-8fd2-4de0-a7ad-5fd62d959d04&first_id=&limit=20","ip":"::1","cost":66}
+{"level":"INFO","time":"2025-01-06T13:03:39.942+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=f0a36bcb-5b39-463f-a69f-c1f136784880&first_id=&limit=20","ip":"::1","cost":24}
+{"level":"INFO","time":"2025-01-06T13:03:39.979+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /profile/data?user_id=1","ip":"::1","cost":652}
+{"level":"INFO","time":"2025-01-06T13:03:39.995+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=bdc2b103-7b1e-4672-9597-fea883705525&first_id=&limit=20","ip":"::1","cost":42}
+{"level":"INFO","time":"2025-01-06T13:03:40.059+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=4fcfdcb0-6c18-4c2f-bc3a-d462ceb55081&first_id=&limit=20","ip":"::1","cost":53}
+{"level":"INFO","time":"2025-01-06T13:03:40.115+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=a76c3900-f8fb-478b-a03e-70bd41b34c34&first_id=&limit=20","ip":"::1","cost":46}
+{"level":"INFO","time":"2025-01-06T13:03:40.160+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=e00957eb-a9ce-4904-a589-8b1cd1f9f1a3&first_id=&limit=20","ip":"::1","cost":35}
+{"level":"INFO","time":"2025-01-06T13:03:40.237+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=0d2fe9e6-9117-46e0-9aa8-c4e72754fa7a&first_id=&limit=20","ip":"::1","cost":66}
+{"level":"INFO","time":"2025-01-06T13:03:40.294+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=492873f9-683e-439e-a211-3a4fd966a321&first_id=&limit=20","ip":"::1","cost":47}
+{"level":"INFO","time":"2025-01-06T13:03:40.356+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=1b3a6793-a69b-4180-86d9-016965c1eeb3&first_id=&limit=20","ip":"::1","cost":52}
+{"level":"INFO","time":"2025-01-06T13:03:40.411+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=d613133f-76e7-42fd-b81b-bc19636f2d9f&first_id=&limit=20","ip":"::1","cost":42}
+{"level":"INFO","time":"2025-01-06T13:03:40.458+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=6bc024b3-54f2-41a5-811c-2b5315e43285&first_id=&limit=20","ip":"::1","cost":38}
+{"level":"INFO","time":"2025-01-06T13:03:40.514+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=8b9ca98e-04ca-469c-b913-5fc9b110c099&first_id=&limit=20","ip":"::1","cost":47}
+{"level":"INFO","time":"2025-01-06T13:03:40.561+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=3d035da2-9067-453e-a000-5fb025f63276&first_id=&limit=20","ip":"::1","cost":36}
+{"level":"INFO","time":"2025-01-06T13:03:51.567+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=6bfb6052-9e0b-4937-a055-074e71eed6fb&first_id=&limit=20","ip":"::1","cost":68}
+{"level":"INFO","time":"2025-01-06T13:03:59.336+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /profile/data?user_id=1","ip":"::1","cost":1}
+{"level":"INFO","time":"2025-01-06T13:03:59.370+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/conversations?pinned=true&last_id=&limit=20","ip":"::1","cost":37}
+{"level":"INFO","time":"2025-01-06T13:03:59.466+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=6bfb6052-9e0b-4937-a055-074e71eed6fb&first_id=&limit=20","ip":"::1","cost":65}
+{"level":"INFO","time":"2025-01-06T13:03:59.533+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=89f19413-0fed-4b6e-b1be-c6cd87757c56&first_id=&limit=20","ip":"::1","cost":53}
+{"level":"INFO","time":"2025-01-06T13:03:59.608+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=fab192fa-82ce-47af-96be-7fa19ce01fbc&first_id=&limit=20","ip":"::1","cost":64}
+{"level":"INFO","time":"2025-01-06T13:03:59.696+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=0d8af399-113d-4bbb-92a8-2ecb1be4b609&first_id=&limit=20","ip":"::1","cost":74}
+{"level":"INFO","time":"2025-01-06T13:03:59.772+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=4c360aa9-407b-48e8-a0a1-2162ce247861&first_id=&limit=20","ip":"::1","cost":64}
+{"level":"INFO","time":"2025-01-06T13:03:59.934+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=cc5d8eb9-807a-491b-a482-24a934928e41&first_id=&limit=20","ip":"::1","cost":149}
+{"level":"INFO","time":"2025-01-06T13:04:00.004+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=beed50e5-3c5d-4d52-a93f-8c5ef8708cbb&first_id=&limit=20","ip":"::1","cost":58}
+{"level":"INFO","time":"2025-01-06T13:04:00.096+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=ca3d93fc-8fd2-4de0-a7ad-5fd62d959d04&first_id=&limit=20","ip":"::1","cost":76}
+{"level":"INFO","time":"2025-01-06T13:04:00.129+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=f0a36bcb-5b39-463f-a69f-c1f136784880&first_id=&limit=20","ip":"::1","cost":22}
+{"level":"INFO","time":"2025-01-06T13:04:00.178+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=bdc2b103-7b1e-4672-9597-fea883705525&first_id=&limit=20","ip":"::1","cost":37}
+{"level":"INFO","time":"2025-01-06T13:04:00.255+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=4fcfdcb0-6c18-4c2f-bc3a-d462ceb55081&first_id=&limit=20","ip":"::1","cost":66}
+{"level":"INFO","time":"2025-01-06T13:04:00.323+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=a76c3900-f8fb-478b-a03e-70bd41b34c34&first_id=&limit=20","ip":"::1","cost":58}
+{"level":"INFO","time":"2025-01-06T13:04:00.386+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=e00957eb-a9ce-4904-a589-8b1cd1f9f1a3&first_id=&limit=20","ip":"::1","cost":51}
+{"level":"INFO","time":"2025-01-06T13:04:00.468+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=0d2fe9e6-9117-46e0-9aa8-c4e72754fa7a&first_id=&limit=20","ip":"::1","cost":69}
+{"level":"INFO","time":"2025-01-06T13:04:00.527+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=492873f9-683e-439e-a211-3a4fd966a321&first_id=&limit=20","ip":"::1","cost":48}
+{"level":"INFO","time":"2025-01-06T13:04:00.592+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=1b3a6793-a69b-4180-86d9-016965c1eeb3&first_id=&limit=20","ip":"::1","cost":55}
+{"level":"INFO","time":"2025-01-06T13:04:00.651+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=d613133f-76e7-42fd-b81b-bc19636f2d9f&first_id=&limit=20","ip":"::1","cost":48}
+{"level":"INFO","time":"2025-01-06T13:04:00.708+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=6bc024b3-54f2-41a5-811c-2b5315e43285&first_id=&limit=20","ip":"::1","cost":46}
+{"level":"INFO","time":"2025-01-06T13:04:00.764+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=8b9ca98e-04ca-469c-b913-5fc9b110c099&first_id=&limit=20","ip":"::1","cost":47}
+{"level":"INFO","time":"2025-01-06T13:04:00.809+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /im_plan/messages?conversation_id=3d035da2-9067-453e-a000-5fb025f63276&first_id=&limit=20","ip":"::1","cost":35}
+{"level":"INFO","time":"2025-01-06T13:07:39.179+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /calendar/data?year=2025","ip":"::1","cost":0}
+{"level":"INFO","time":"2025-01-06T13:07:39.192+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /task/list?user_id=1&date=2025-01-06&type=0&year=2024","ip":"::1","cost":0}
+{"level":"INFO","time":"2025-01-06T13:07:39.227+0800","name":"todo-ai","msg":"[todo-ai] 200 GET     /date_ai_suggest/data?user_id=1&date=2025-01-06","ip":"::1","cost":1}
+{"level":"INFO","time":"2025-01-06T13:22:02.863+0800","name":"todo-ai","msg":"Recv signal interrupt","caller":"todo-ai/main.go:184"}
+{"level":"INFO","time":"2025-01-06T13:22:07.862+0800","name":"todo-ai","msg":"HttpServer start with addr: 0.0.0.0:18888","caller":"core/server.go:31"}
+{"level":"INFO","time":"2025-01-06T13:22:07.875+0800","name":"todo-ai","msg":"todo-ai start, srvID: todo-ai-cttmgvr5grbcn32j0q40","caller":"todo-ai/main.go:125"}
+{"level":"INFO","time":"2025-01-06T14:27:20.002+0800","name":"todo-ai","msg":"Recv signal interrupt","caller":"todo-ai/main.go:184"}

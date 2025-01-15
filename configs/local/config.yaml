@@ -35,5 +35,5 @@ logging:
 dify:
   api_url: "http://dify.fpsops.com/v1"  # Dify API地址
   workflow:
-    - "[todo]当日任务AI建议工作流:app-h3i1XFxkHABIBkJt6dJSAeCD"
-    - "[todo]当日任务排期合理化工作流:app-tdFvjocQxEMVe181JuhcjK9S"
+    - "[todo]当日任务AI建议工作流:app-q80u0Xz2h52Ki85LlXBjcC15"
+    - "[todo]当日任务排期合理化工作流:app-ShfaqSf5rPKyd6d4OiuUeGet"

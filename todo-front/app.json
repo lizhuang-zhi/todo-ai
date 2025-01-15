@@ -46,5 +46,13 @@
     "ec-canvas": "/components/ec-canvas/ec-canvas",
     "ai-format": "/components/AiFormat/AiFormat",
     "im-plan-format": "/components/IMPlanFormat/IMPlanFormat"
-  }
+  },
+  "permission": {
+    "scope.record": {
+      "desc": "需要使用您的录音功能"
+    }
+  },
+  "requiredPrivateInfos": [
+    "getRecorderManager"
+  ]
 }

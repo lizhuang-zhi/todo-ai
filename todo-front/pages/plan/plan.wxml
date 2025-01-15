@@ -22,3 +22,20 @@
     <button class="send-button" bindtap="sendMessage">发送</button>
   </view>
 </view>
+
+<view class="chat-input-area">
+  <!-- 原有的文本输入框 -->
+  <input class="chat-input" bindinput="onInput" value="{{inputValue}}" />
+  
+  <!-- 语音按钮 -->
+  <view class="voice-btn" 
+        bindtouchstart="startRecord" 
+        bindtouchend="endRecord"
+        bindtouchmove="moveRecord">
+    <image src="/assets/voice.png" />
+    {{recording ? '松开发送' : '按住说话'}}
+  </view>
+  
+  <!-- 发送按钮 -->
+  <button class="send-btn" bindtap="sendMessage">发送</button>
+</view>

@@ -1,3 +1,5 @@
+const recorderManager = wx.getRecorderManager();
+
 let api = require('../../common/api');
 
 Page({
@@ -12,8 +14,10 @@ Page({
     inputValue: '', // 输入框内容
     aiAvatar: '../../images/ai_suggest.png', // AI 头像（需替换为真实路径）
     userAvatar: '../../images/default-avatar.png', // 用户头像（需替换为真实路径）
-
     conversationID: "", // 会话ID, 首次创建不传递
+
+    recording: false,    // 是否正在录音
+    cancelRecord: false  // 是否取消录音
   },
   onInput(e) {
     this.setData({ inputValue: e.detail.value });
@@ -211,10 +215,109 @@ Page({
     })
   },
 
+  // 开始录音
+  startRecord(e) {
+    // 先获取录音权限
+    wx.authorize({
+      scope: 'scope.record',
+      success: () => {
+        this.setData({
+          recording: true,
+          cancelRecord: false
+        });
+        
+        // 开始录音的配置
+        const options = {
+          duration: 60000,
+          sampleRate: 16000,
+          numberOfChannels: 1,
+          encodeBitRate: 96000,
+          format: 'mp3',
+          frameSize: 50
+        }
+        
+        recorderManager.start(options);
+      },
+      fail: () => {
+        wx.showModal({
+          title: '提示',
+          content: '需要您的录音权限',
+          success: (res) => {
+            if (res.confirm) {
+              wx.openSetting();
+            }
+          }
+        });
+      }
+    });
+  },
+
+  // 结束录音
+  endRecord() {
+    if (!this.data.recording) return;
+    
+    this.setData({
+      recording: false
+    });
+    
+    if (this.data.cancelRecord) {
+      recorderManager.stop();
+      return;
+    }
+    
+    recorderManager.stop();
+  },
+
+  // 将语音转为文字
+  translateVoice(tempFilePath) {
+    wx.showLoading({
+      title: '正在识别...'
+    });
+
+    // 使用微信原生的语音识别接口
+    wx.uploadFile({
+      url: 'YOUR_SERVER_URL', // 你的服务器接口地址
+      filePath: tempFilePath,
+      name: 'file',
+      success: (res) => {
+        const result = JSON.parse(res.data);
+        if (result.success) {
+          this.setData({
+            inputValue: result.text
+          });
+        } else {
+          wx.showToast({
+            title: '识别失败',
+            icon: 'none'
+          });
+        }
+      },
+      fail: (err) => {
+        console.error('语音识别失败:', err);
+        wx.showToast({
+          title: '识别失败',
+          icon: 'none'
+        });
+      },
+      complete: () => {
+        wx.hideLoading();
+      }
+    });
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    // 监听录音结束事件
+    recorderManager.onStop((res) => {
+      if (this.data.cancelRecord) {
+        console.log('取消录音');
+        return;
+      }
+      
+      this.translateVoice(res.tempFilePath);
+    });
 
     // 获取会话id参数(从其他页面跳转过来)
     if (options.id) {
